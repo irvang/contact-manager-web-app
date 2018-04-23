@@ -27,8 +27,6 @@ class ContactClass {
 	}
 }
 
-// module.exports = Contact;
-
 module.exports = {
 	model: Contact, 
 	creator: ContactClass
