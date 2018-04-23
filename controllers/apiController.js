@@ -1,12 +1,13 @@
 const bodyParser = require('body-parser');
-const jsonParser = bodyParser.json();
+const Contact = require('../models/contactModel');
 
 module.exports = function (app) {
 	//====MIDDLEWARE
-	app.use(jsonParser);
+	app.use(bodyParser.json());
+	app.use(bodyParser.urlencoded({extended: true}));
 
 	app.use('/', (req, res, next) => {
-		console.log(`app.use || METHOD: ${req.method} | PATH: ${req.path} | BODY: `, req.body, '|');
+		// console.log(`apiController: app.use || METHOD: ${req.method} | PATH: ${req.path} | BODY: `, req.body, '|');
 		next();
 	});
 
@@ -21,9 +22,14 @@ module.exports = function (app) {
 
 	app.get('/contacts', (req, res, next) => {
 		//get all contacts
+		
+		Contact.model.find(function (err, contacts) {
+			if(err) return console.error(err);
+			res.send(contacts);
+		});
+		
+		// res.render('response', { path: req.path, method: req.method, body: JSON.stringify(req.body) });
 
-		res.render('response', { path: req.path, method: req.method, body: JSON.stringify(req.body) });
-		// res.send('<h3 style="border: 1px dashed red">something rendered in /contacts</h3>');
 	});
 
 	app.get('/contact/:name', (req, res, next) => {
@@ -33,11 +39,20 @@ module.exports = function (app) {
 	});
 
 	//====POST
-	app.post('/contact', jsonParser, (req, res, next) => {
+	app.post('/contact', (req, res, next) => {
 		//post new contact to database
+		
+		// res.render('response', { path: req.path, method: req.method, body: JSON.stringify(req.body) });
+		// res.send();
+	});
+
+	app.post('/contact2', (req, res, next) => {
+		//post new contact to database
+		console.log('in contact2', req.body);
 		res.render('response', { path: req.path, method: req.method, body: JSON.stringify(req.body) });
 		// res.send();
 	});
+
 
 	//====PUT
 	app.put('/contact/:id', (req, res, next) => {
