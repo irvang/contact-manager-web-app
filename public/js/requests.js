@@ -32,7 +32,7 @@ function sendData() {
 	}
 
 	// Set up our request
-	XHR.open("POST", '/contact2', true);
+	XHR.open("POST", '/contact', true);
 	XHR.setRequestHeader("Content-type", "application/json");
 
 	//send data formatted as json
@@ -52,7 +52,8 @@ function testGet() {
 		// console.log('allHeaders: ', xhr.getAllResponseHeaders());
 
 		if (this.readyState == 4 && this.status == 200) {
-			document.querySelector('div').innerHTML = xhr.responseText;
+
+			formatGetResponse(xhr.responseText);
 			// console.log('responseText: ', xhr.responseText);
 			// console.log(typeof this.readyState, this.status);
 			// console.log('responseText: ', xhr);
@@ -65,4 +66,21 @@ function testGet() {
 
 	xhr.send();
 	return false;
+}
+
+function formatGetResponse(resText) {
+	const contacts = JSON.parse(resText);
+
+	let tableBody = document.querySelector('#contactsTable > tbody');
+	tableBody.innerHTML = '';
+
+	contacts.forEach((elm, index, array) => {
+		let tr = document.createElement('tr');
+		tr.innerHTML = `<td>${elm.fname}</td><td> ${elm.lname}</td> <td> ${elm.phone}</td>`;
+		tableBody.appendChild(tr);
+	});
+}
+
+function comingSoon (verb) {
+	document.querySelector('div').innerHTML  = '<strong>'+ verb + '</strong>'+ ' Coming soon!';
 }

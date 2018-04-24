@@ -16,10 +16,10 @@
 	<form id="myForm" name="myForm">
 		Name:
 		<br>
-		<input type="text" name='fname' value="Irv">
+		<input type="text" name='fname' value="John">
 		<br> LastName:
 		<br>
-		<input type="text" name='lname' value="Ang">
+		<input type="text" name='lname' value="ArcTangent">
 		<br> Phone Number:
 		<br>
 		<input type="text" name='phone' value="7775555">
@@ -30,15 +30,31 @@
 	</form>
 
 	<br>
-	<button onclick="testPost()">POST</button>
-	<button onclick="testGet()">GET</button>
-	<button onclick="testGet()">PUT</button>
-	<button onclick="testPost()">DELETE</button>
+
+	<button onclick="testGet()">GET All contacts</button>
+	<button onclick="comingSoon(this.textContent);">PUT</button>
+	<button onclick="comingSoon(this.textContent);">DELETE</button>
+	<br>
+	<br>
+
+	<table id="contactsTable" border>
+		<thead>
+			<tr>
+				<th>Name</th>
+				<th>Last Name</th>
+				<th>Phone</th>
+			</tr>
+		</thead>
+		<tbody>
+
+		</tbody>
+	</table>
+
+	<br>
 
 	<div></div>
-	<script src="assets/js/requests.js">
 
-	</script>
+	<script src="assets/js/requests.js"></script>
 
 </body>
 
@@ -50,6 +66,6 @@
 
  -->
 <!-- 
-	onsubmint='return somefunction();'
+	onsubmit='return somefunction();'
 	https://stackoverflow.com/questions/5195933/with-form-validation-why-onsubmit-return-functionname-instead-of-onsubmit
  -->
