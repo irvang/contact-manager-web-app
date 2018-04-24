@@ -13,26 +13,22 @@
 		<%= path %>
 	</h3>
 
-	<!-- <form action="POST" action="" onsubmit="return testPost();" method="POST"> -->
-	<!-- <form action="contact" onsubmit="return testPost();" method="POST"> -->
-	<form action="contact2" onsubmit="return returnFalse()" method="POST">
+	<form id="myForm" name="myForm">
 		Name:
 		<br>
-		<input type="text" name='fname' value="Irving">
+		<input type="text" name='fname' value="Irv">
 		<br> LastName:
 		<br>
-		<input type="text" name='lname' value="Luna">
+		<input type="text" name='lname' value="Ang">
 		<br> Phone Number:
 		<br>
 		<input type="text" name='phone' value="7775555">
-		<input type="submit" value="POST">
+
+		<input type="submit" value="POST" name="submit">
+		<!-- <input id="formButton" type="button" value="POST2">
+		<button>Post3</button> -->
 	</form>
 
-	<!-- <form action="" onsubmit="return testGet();">
-		Name:
-		<input type="text" name='fname'>
-		<input type="submit" value="GET">
-	</form> -->
 	<br>
 	<button onclick="testPost()">POST</button>
 	<button onclick="testGet()">GET</button>
@@ -40,59 +36,8 @@
 	<button onclick="testPost()">DELETE</button>
 
 	<div></div>
-	<script>
-		function returnFalse (val) {
-console.log(document.querySelector('form'));
-			return false;
-		}
-		function testPost() {
-			let xhr = new XMLHttpRequest();
-			
-			xhr.onload = function () { }
-			let data = JSON.stringify({ firstname: 'Jane', lastname: 'Doer' });
-			xhr.onreadystatechange = function () {
-				if (this.readyState == 4 && this.status == 200) {
-					document.querySelector('div').innerHTML = xhr.responseText;
-					console.log('allHeaders: ', xhr.getAllResponseHeaders());
-					console.log('responseText: \n\n', xhr);
-				}
+	<script src="assets/js/requests.js">
 
-			}
-			xhr.open('post', '/contact', true);
-			// console.log(fname)
-			xhr.setRequestHeader("Content-type", "text/plain");
-			xhr.send(data);
-			// console.log(req);
-			return false;
-		}
-
-
-		function testGet() {
-
-			let xhr = new XMLHttpRequest();
-
-			xhr.open('get', '/contacts', true);
-			xhr.setRequestHeader("Content-type", "text/html");
-
-			xhr.onreadystatechange = function () {
-				// Process the server response here.
-				// console.log('allHeaders: ', xhr.getAllResponseHeaders());
-
-				if (this.readyState == 4 && this.status == 200) {
-					document.querySelector('div').innerHTML = xhr.responseText;
-					// console.log('responseText: ', xhr.responseText);
-					// console.log(typeof this.readyState, this.status);
-					// console.log('responseText: ', xhr);
-				}
-
-			}
-			// xhr.onload = function () { }
-			// let data = JSON.stringify({ firstname: 'Jane', lastname: 'Doer' });
-			// xhr.send(data);
-
-			xhr.send();
-			return false;
-		}
 	</script>
 
 </body>

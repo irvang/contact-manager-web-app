@@ -29,7 +29,7 @@ module.exports = function (app) {
 		});
 
 		// res.render('response', { path: req.path, method: req.method, body: JSON.stringify(req.body) });
-	});
+	}); 
 
 	app.get('/contact/:name', (req, res, next) => {
 		//get contact by name
@@ -48,6 +48,19 @@ module.exports = function (app) {
 			res.send('success! - contact added in post:');
 		})
 		console.log("body: ", req.body);
+	});
+
+	app.post('/contact2', (req, res, next) => {
+		//post new contact to database
+
+		let newContact = new Contact.creator(req.body.fname, req.body.lname, req.body.phone);
+
+		newContact.save((err) => {
+			if (err) throw err;
+			res.send(`success! - contact added with post: 
+			\n\n${newContact.fname} ${newContact.lname} ${newContact.phone}`);
+		})
+		console.log("at /contact2 -- body: ", req.body);
 	});
 
 	//====PUT
