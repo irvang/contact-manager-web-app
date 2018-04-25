@@ -44,11 +44,12 @@ module.exports = function (app) {
 
 		newContact.save((err) => {
 			if (err) throw err;
-			res.send(`success! - contact added with post: 
+			// res.send('successsss');
+			res.send(`Success! - contact added with post: 
 			\n\n${newContact.fname} ${newContact.lname} ${newContact.phone}`);
 		});
 
-		console.log("at /contact2 -- body: ", req.body);
+		console.log("at /contact -- body: ", req.body);
 	});
 
 	//====PUT
