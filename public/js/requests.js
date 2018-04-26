@@ -1,42 +1,105 @@
-
-let form = document.querySelector('#myForm');;
-form.addEventListener('submit', function (e) {
-	e.preventDefault();
-
-	// console.log(e);
-	sendData();
-});
-
-function sendData() {
-
-	var XHR = new XMLHttpRequest();
-
-	// Bind the FormData object and the form element
-	var FD = new FormData(form);
-
-	// Define what happens on successful data submission
-	XHR.addEventListener("load", function (event) {
-		// alert(event.target.responseText);
-		document.querySelector('div').innerHTML = event.target.responseText;
-	});
-
-	// Define what happens in case of error
-	XHR.addEventListener("error", function (event) {
-		alert('Oops! Something went wrong.');
-	});
-
+const postFetch = (function () {
 	const myObject = {};
-	// Display the key/value pairs
-	for (var pair of FD.entries()) {
-		myObject[pair[0]] = pair[1];
+	const inputs = document.querySelectorAll('form#myForm > input');
+	const responseDisplay = document.querySelector('#responseDisplay');
+
+	return function () {
+
+		inputs.forEach(function (item) {
+			myObject[item.name] = item.value;
+
+		});
+
+		let fetchObj = fetch('/contact', {
+			method: 'POST', // or 'PUT'
+			body: JSON.stringify(myObject), // data can be `string` or {object}!
+			headers: new Headers({
+				'Content-Type': 'application/json'
+			})
+		});
+
+		let response = fetchObj.then(res => {
+
+			// console.log(res.statusText);
+			return res;
+		});
+		
+		response.catch(error => {
+			console.error('Error:', error)
+		})
+			.then(res => {
+				res.text().then(text => {
+					responseDisplay.innerHTML = text;
+				});
+			});
 	}
+})();
 
-	// Set up our request
-	XHR.open("POST", '/contact', true);
-	XHR.setRequestHeader("Content-type", "application/json");
+//====FETCH
+function getFetch() {
 
-	//send data formatted as json
-	XHR.send(JSON.stringify(myObject));
+	// see MDN's fetch() for options object passed as second parameter
+	fetch('/contacts')
+		.then(function (response) {
+			// console.log(response);
+			//body.json() 
+			return response.json();
+		})
+		.then(function (myJson) {
+			// console.log(myJson);
+			const contacts = myJson;
+			let tableBody = document.querySelector('#contactsTable > tbody');
+			tableBody.innerHTML = '';
+
+			contacts.forEach((elm, index, array) => {
+				let tr = document.createElement('tr');
+				tr.innerHTML = `<td>${elm.fname}</td><td> ${elm.lname}</td> <td> ${elm.phone}</td>`;
+				tableBody.appendChild(tr);
+			});
+		});
+}
+
+//====POST FETCH
+const getInputValues = (function () {
+	//create and select only once
+	const myObject = {};
+	const inputs = document.querySelectorAll('form#myForm > input');
+
+	//add key value pairs extracted from the inputs
+	return function () {
+		inputs.forEach(function (item) {
+			myObject[item.name] = item.value;
+		});
+		return myObject;
+	}
+})();
+
+function postFetch2() {
+
+	const inputs = getInputValues();
+
+	let fetchObj = fetch('/contact', {
+		method: 'POST', // or 'PUT'
+		body: JSON.stringify(inputs), // data can be `string` or {object}!
+		headers: new Headers({
+			'Content-Type': 'application/json'
+		})
+	});
+
+	let response = fetchObj.then(res => {
+
+		// console.log(res.statusText);
+		return res;
+	});
+
+	response.catch(error => {
+		console.error('Error:', error)
+	})
+		.then(res => {
+			res.text().then(text => {
+				document.querySelector('div').innerHTML = text;
+			});
+		});
 }
 
 //====GET
@@ -81,6 +144,7 @@ function formatGetResponse(resText) {
 	});
 }
 
-function comingSoon (verb) {
-	document.querySelector('div').innerHTML  = '<strong>'+ verb + '</strong>'+ ' Coming soon!';
+function comingSoon(verb) {
+	document.querySelector('div').innerHTML = '<strong>' + verb + '</strong>' + ' Coming soon!';
 }
+

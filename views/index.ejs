@@ -16,25 +16,28 @@
 	<form id="myForm" name="myForm">
 		Name:
 		<br>
-		<input type="text" name='fname' value="John">
+		<input id="fname" type="text" name='fname' value="Johnaaa">
 		<br> LastName:
 		<br>
-		<input type="text" name='lname' value="ArcTangent">
+		<input id="lname" type="text" name='lname' value="ArcTangent">
 		<br> Phone Number:
 		<br>
-		<input type="text" name='phone' value="7775555">
-
-		<input type="submit" value="POST" name="submit">
-		<!-- <input id="formButton" type="button" value="POST2">
-		<button>Post3</button> -->
+		<input id="phone" type="text" name='phone' value="7775555">
 	</form>
 
 	<br>
+	<button id="post">FETCH POST</button>
+	<button id="get">FETCH GET</button>
+	<button id="put" onclick="comingSoon(this.textContent);">PUT</button>
+	<button id="delete" onclick="comingSoon(this.textContent);">DELETE</button>
 
-	<button onclick="testGet()">GET All contacts</button>
-	<button onclick="comingSoon(this.textContent);">PUT</button>
-	<button onclick="comingSoon(this.textContent);">DELETE</button>
+	<button id="" onclick="getInputValues();">getInputValues()</button>
+	<button id="" onclick="testGet()">GET All contacts</button>
+
 	<br>
+	<br>
+
+	<div id="responseDisplay"></div>
 	<br>
 
 	<table id="contactsTable" border>
@@ -52,20 +55,9 @@
 
 	<br>
 
-	<div></div>
-
 	<script src="assets/js/requests.js"></script>
+	<script src="assets/js/add-listeners.js"></script>
 
 </body>
 
 </html>
-
-
-<!-- 
-	I want to have a button for each of my verbs
-
- -->
-<!-- 
-	onsubmit='return somefunction();'
-	https://stackoverflow.com/questions/5195933/with-form-validation-why-onsubmit-return-functionname-instead-of-onsubmit
- -->
