@@ -12,27 +12,22 @@ module.exports = function (app) {
 	});
 
 	//====GET
-	app.get('/landing', (req, res, next) => {
-		//get all contacts
 
+	//get all contacts
+	app.get('/landing', (req, res, next) => {
 		res.render('index', { path: req.path });
-		// res.send(getPath(req));
 	});
 
+	//get all contacts
 	app.get('/contacts', (req, res, next) => {
-		//get all contacts
-
 		Contact.model.find(function (err, contacts) {
 			if (err) return console.error(err);
 			res.send(contacts);
 		});
-
-		// res.render('response', { path: req.path, method: req.method, body: JSON.stringify(req.body) });
 	});
 
+	//get contact by name, not implemented at the moment
 	app.get('/contact/:name', (req, res, next) => {
-		//get contact by name
-
 		res.send(res.body);
 	});
 
@@ -45,15 +40,14 @@ module.exports = function (app) {
 			if (err) throw err;
 			// res.send('successsss');
 			res.send(`Success! - contact added with post: 
-			\n\n${newContact.fname} ${newContact.lname} ${newContact.phone}`);
+			\n\n <strong>${newContact.fname} ${newContact.lname} ${newContact.phone} </strong>`);
 		});
 
 		console.log("at /contact -- body: ", req.body);
 	});
 
-	//====PUT
+	//====PUT - change a contact by its id
 	app.put('/contact/:id', (req, res, next) => {
-		//change a contact by its id
 
 		if (req.params.id) {
 			console.log('got inside');
@@ -74,9 +68,9 @@ module.exports = function (app) {
 		}
 	});
 
-	//====DELETE
+	//====DELETE - delete a contact by its id?
 	app.delete('/contact/:id', (req, res, next) => {
-		//delete a contact by its 
+		
 		if (req.body.id) {
 			let q = Contact.model.findByIdAndRemove(req.body.id, function (err) {
 				if (err) throw err;
@@ -91,4 +85,4 @@ module.exports = function (app) {
 
 function logPath(req) {
 	console.log(`called ${req.path}`);
-}
+} 
