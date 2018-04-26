@@ -1,0 +1,11 @@
+for..of
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for...of
+
+FormData.values()
+https://developer.mozilla.org/en-US/docs/Web/API/FormData/values
+
+FormData.get
+https://developer.mozilla.org/en-US/docs/Web/API/FormData/get
+
+onsubmit='return somefunction();'
+https://stackoverflow.com/questions/5195933/with-form-validation-why-onsubmit-return-functionname-instead-of-onsubmit

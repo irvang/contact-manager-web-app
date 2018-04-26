@@ -4,7 +4,7 @@ const Contact = require('../models/contactModel');
 module.exports = function (app) {
 	//====MIDDLEWARE
 	app.use(bodyParser.json());
-	app.use(bodyParser.urlencoded({extended: true}));
+	app.use(bodyParser.urlencoded({ extended: true }));
 
 	app.use('/', (req, res, next) => {
 		// console.log(`apiController: app.use || METHOD: ${req.method} | PATH: ${req.path} | BODY: `, req.body, '|');
@@ -22,14 +22,13 @@ module.exports = function (app) {
 
 	app.get('/contacts', (req, res, next) => {
 		//get all contacts
-		
+
 		Contact.model.find(function (err, contacts) {
-			if(err) return console.error(err);
+			if (err) return console.error(err);
 			res.send(contacts);
 		});
-		
-		// res.render('response', { path: req.path, method: req.method, body: JSON.stringify(req.body) });
 
+		// res.render('response', { path: req.path, method: req.method, body: JSON.stringify(req.body) });
 	});
 
 	app.get('/contact/:name', (req, res, next) => {
@@ -38,41 +37,59 @@ module.exports = function (app) {
 		res.send(res.body);
 	});
 
-	//====POST
+	//====POST - post new contact to database
 	app.post('/contact', (req, res, next) => {
-		//post new contact to database
-		
-		// res.render('response', { path: req.path, method: req.method, body: JSON.stringify(req.body) });
-		// res.send();
-	});
 
-	app.post('/contact2', (req, res, next) => {
-		//post new contact to database
-		console.log('in contact2', req.body);
-		res.render('response', { path: req.path, method: req.method, body: JSON.stringify(req.body) });
-		// res.send();
-	});
+		let newContact = new Contact.creator(req.body.fname, req.body.lname, req.body.phone);
 
+		newContact.save((err) => {
+			if (err) throw err;
+			res.send(`success! - contact added with post: 
+			\n\n${newContact.fname} ${newContact.lname} ${newContact.phone}`);
+		});
+
+		console.log("at /contact2 -- body: ", req.body);
+	});
 
 	//====PUT
 	app.put('/contact/:id', (req, res, next) => {
 		//change a contact by its id
-		res.send();
+
+		if (req.params.id) {
+			console.log('got inside');
+			Contact.model.findByIdAndUpdate(req.params.id, {
+				//schema
+				fname: req.body.name,
+				lname: req.body.lastname,
+				phone: req.body.phoneNumber
+
+				//callback
+			}, (err, todo) => {
+				if (err) throw err;
+				res.send('Success! Contact updated');
+			}
+			);
+		} else {
+			res.send('Sorry, unable to find contact');
+		}
+
 	});
 
 	//====DELETE
 	app.delete('/contact/:id', (req, res, next) => {
-		//delete a contact by its id
-		res.send();
+		//delete a contact by its 
+		if (req.body.id) {
+			let q = Contact.model.findByIdAndRemove(req.body.id, function (err) {
+				if (err) throw err;
+				res.send('Contact deleted successfully!');
+			});
+			console.log(q.schema.obj);
+		} else {
+			res.status(404).send();
+		}
 	});
 }
 
 function logPath(req) {
 	console.log(`called ${req.path}`);
 }
-
-// function getPath(req) {
-// 	// return `${req.method} ${req.path}`;
-// }
-// export default function (app) {
-// }
