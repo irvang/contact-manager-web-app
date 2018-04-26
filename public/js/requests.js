@@ -1,10 +1,27 @@
+const getInputValues = (function () {
+	//create and select only once
+	const myObject = {};
+	const inputs = document.querySelectorAll('form#myForm > input');
+
+	//add key value pairs extracted from the inputs
+	return function () {
+		inputs.forEach(function (item) {
+			myObject[item.name] = item.value;
+		});
+		return myObject;
+	}
+})();
+
+
 function postFetch() {
 
-	const inputs = {
-		fname: document.querySelector('#fname').value,
-		lname: document.querySelector('#lname').value,
-		phone: document.querySelector('#phone').value
-	}
+	// const inputs = {
+	// 	fname: document.querySelector('#fname').value,
+	// 	lname: document.querySelector('#lname').value,
+	// 	phone: document.querySelector('#phone').value
+	// }
+
+	const inputs = getInputValues();
 
 	let fetchObj = fetch('/contact', {
 		method: 'POST', // or 'PUT'
@@ -28,7 +45,7 @@ function postFetch() {
 				document.querySelector('div').innerHTML = text;
 			});
 		});
-}
+} 
 
 //====FETCH
 function testFetch() {

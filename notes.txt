@@ -9,3 +9,5 @@ https://developer.mozilla.org/en-US/docs/Web/API/FormData/get
 
 onsubmit='return somefunction();'
 https://stackoverflow.com/questions/5195933/with-form-validation-why-onsubmit-return-functionname-instead-of-onsubmit
+
+Backlog, ready, in progress, review, acceptance, done

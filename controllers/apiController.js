@@ -11,7 +11,6 @@ module.exports = function (app) {
 		next();
 	});
 
-	//====HTTP METHODS 
 	//====GET
 	app.get('/landing', (req, res, next) => {
 		//get all contacts
@@ -73,7 +72,6 @@ module.exports = function (app) {
 		} else {
 			res.send('Sorry, unable to find contact');
 		}
-
 	});
 
 	//====DELETE

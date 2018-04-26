@@ -26,13 +26,16 @@
 	</form>
 
 	<br>
-	<button onclick="postFetch();">FETCH POST</button>
-	<button onclick="testFetch()">FETCH GET</button> 
+	<button id="post">FETCH POST</button>
+	<button id="get">FETCH GET</button>
+	<button id="put" onclick="comingSoon(this.textContent);">PUT</button>
+	<button id="delete" onclick="comingSoon(this.textContent);">DELETE</button>
 
-	<button onclick="testGet()">GET All contacts</button>
-	<button onclick="comingSoon(this.textContent);">PUT</button>
-	<button onclick="comingSoon(this.textContent);">DELETE</button>
-	
+	<button id="" onclick="getInputValues();">getInputValues()</button>
+
+	<button id="" onclick="testGet()">GET All contacts</button>
+
+
 	<br>
 	<br>
 
@@ -53,18 +56,10 @@
 
 	<div></div>
 
+	
 	<script src="assets/js/requests.js"></script>
+	<script src="assets/js/add-listeners.js"></script>
 
 </body>
 
 </html>
-
-
-<!-- 
-	I want to have a button for each of my verbs
-
- -->
-<!-- 
-	onsubmit='return somefunction();'
-	https://stackoverflow.com/questions/5195933/with-form-validation-why-onsubmit-return-functionname-instead-of-onsubmit
- -->
