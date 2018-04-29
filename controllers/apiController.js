@@ -34,17 +34,19 @@ module.exports = function (app) {
 
 	//====POST - post new contact to database
 	app.post('/contact', (req, res, next) => {
+		//deconstruncting for cleaner code
+		const { firstName, lastName, phoneNumber, email, address, birthday, notes } = req.body;
 
-		let newContact = new Contact.creator(req.body.firstName, req.body.lastName, req.body.phoneNumber);
+		const newContact = new Contact.creator(firstName, lastName, phoneNumber);
 
 		newContact.save((err) => {
 			if (err) throw err;
 			// res.send('successsss');
 			res.send(`Success! - contact added with post: 
-			\n\n <strong>${newContact.firstName} ${newContact.lastName} ${newContact.phoneNumber} </strong>`);
+			\n\n <strong>${firstName} ${lastName} ${phoneNumber} </strong>`);
 		});
 
-		console.log("at /contact -- body: ", req.body);
+		// console.log("at /contact -- body: ", req.body);
 	});
 
 	//====PUT - change a contact by its id
@@ -71,7 +73,7 @@ module.exports = function (app) {
 
 	//====DELETE - delete a contact by its id?
 	app.delete('/contact/:id', (req, res, next) => {
-		
+
 		if (req.body.id) {
 			let q = Contact.model.findByIdAndRemove(req.body.id, function (err) {
 				if (err) throw err;

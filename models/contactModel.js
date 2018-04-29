@@ -4,7 +4,11 @@ const mongoose = require('mongoose');
 const contactSchema = mongoose.Schema({
 	firstName: String,
 	lastName: String,
-	phoneNumber: String
+	phoneNumber: String, 
+	email: String,
+	address: String,
+	birthday: Date,
+	notes: String
 });
 
 contactSchema.methods.doSomething = function () {

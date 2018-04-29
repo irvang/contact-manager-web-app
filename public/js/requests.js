@@ -47,20 +47,37 @@ function getFetch() {
 		})
 		.then(function (parsedJsonContactList) {
 			// console.log(myJson);
-			let tableBody = document.querySelector('#contactsTable > tbody');
+			const tableBody = document.querySelector('#contactsTable > tbody');
 			tableBody.innerHTML = '';
 
 			document.querySelector('#responseDisplay').innerHTML = `
 			There are ${parsedJsonContactList.length} contacts on your list :)`;
 
-			parsedJsonContactList.forEach((elm, index, array) => {
-				let tr = document.createElement('tr');
-				tr.innerHTML = `<td>${elm.firstName}</td><td> ${elm.lastName}</td> <td> ${elm.phoneNumber}</td>`;
+			parsedJsonContactList.forEach((elm) => {
+				const tr = document.createElement('tr');
+				tr.innerHTML = `
+					<td>${elm.firstName}</td>
+					<td> ${elm.lastName}</td> 
+					<td> ${elm.phoneNumber}</td>
+				`;
 				tableBody.appendChild(tr);
 			});
 		});
 }
 
+
+/* 
+
+
+
+
+
+
+
+
+
+
+*/
 //====POST FETCH
 const getInputValues = (function () {
 	//create and select only once
