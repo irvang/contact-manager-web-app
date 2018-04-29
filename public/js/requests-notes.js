@@ -63,7 +63,7 @@
 				}
 			}
 			xhr.open('post', '/contact', true);
-			// console.log(fname)
+			// console.log(firstName)
 			xhr.setRequestHeader("Content-type", "text/plain");
 			xhr.send(data);
 			// console.log(req);

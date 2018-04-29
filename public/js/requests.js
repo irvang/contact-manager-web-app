@@ -23,7 +23,7 @@ const postFetch = (function () {
 			// console.log(res.statusText);
 			return res;
 		});
-		
+
 		response.catch(error => {
 			console.error('Error:', error)
 		})
@@ -40,20 +40,22 @@ function getFetch() {
 
 	// see MDN's fetch() for options object passed as second parameter
 	fetch('/contacts')
-		.then(function (response) {
-			// console.log(response);
+		.then(function (responseContactList) {
+			// response is the list in JSON, response.json() parses it
 			//body.json() 
-			return response.json();
+			return responseContactList.json();
 		})
-		.then(function (myJson) {
+		.then(function (parsedJsonContactList) {
 			// console.log(myJson);
-			const contacts = myJson;
 			let tableBody = document.querySelector('#contactsTable > tbody');
 			tableBody.innerHTML = '';
 
-			contacts.forEach((elm, index, array) => {
+			document.querySelector('#responseDisplay').innerHTML = `
+			There are ${parsedJsonContactList.length} contacts on your list :)`;
+
+			parsedJsonContactList.forEach((elm, index, array) => {
 				let tr = document.createElement('tr');
-				tr.innerHTML = `<td>${elm.fname}</td><td> ${elm.lname}</td> <td> ${elm.phone}</td>`;
+				tr.innerHTML = `<td>${elm.firstName}</td><td> ${elm.lastName}</td> <td> ${elm.phoneNumber}</td>`;
 				tableBody.appendChild(tr);
 			});
 		});
@@ -139,7 +141,7 @@ function formatGetResponse(resText) {
 
 	contacts.forEach((elm, index, array) => {
 		let tr = document.createElement('tr');
-		tr.innerHTML = `<td>${elm.fname}</td><td> ${elm.lname}</td> <td> ${elm.phone}</td>`;
+		tr.innerHTML = `<td>${elm.firstName}</td><td> ${elm.lastName}</td> <td> ${elm.phoneNumber}</td>`;
 		tableBody.appendChild(tr);
 	});
 }

@@ -2,9 +2,9 @@ const mongoose = require('mongoose');
 
 // define schema
 const contactSchema = mongoose.Schema({
-	fname: String,
-	lname: String,
-	phone: String
+	firstName: String,
+	lastName: String,
+	phoneNumber: String
 });
 
 contactSchema.methods.doSomething = function () {
@@ -20,9 +20,9 @@ class ContactClass {
 
 		//'Contact' is the schema mdoel
 		return new Contact ({
-			fname: name,
-			lname: lastname,
-			phone: phoneNumber
+			firstName: name,
+			lastName: lastname,
+			phoneNumber: phoneNumber
 		});
 	}
 }
@@ -31,3 +31,18 @@ module.exports = {
 	model: Contact, 
 	creator: ContactClass
 }
+
+
+/* 
+Fields:
+name
+lastName
+phoneNumber
+email
+
+address
+birthday
+notes
+
+
+*/

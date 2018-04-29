@@ -6,17 +6,15 @@ const config = require('./config/config-index');
 const apiController = require('./controllers/apiController');
 const setupController = require('./controllers/setupController');
 
-// console.log(setupController.toString());
-
 //====MODELS
 
 //====PORT
 const port = process.env.PORT || 3000;
 
-//====STATIC FILES 
-
 //====VIEW
 app.set('view engine', 'ejs');
+
+//====STATIC FILES 
 app.use('/assets', express.static(__dirname + '/public'));
 
 //====CONTROLLERS

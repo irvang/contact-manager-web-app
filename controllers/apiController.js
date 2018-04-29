@@ -22,6 +22,7 @@ module.exports = function (app) {
 	app.get('/contacts', (req, res, next) => {
 		Contact.model.find(function (err, contacts) {
 			if (err) return console.error(err);
+			// console.log(contacts.length);//send lenght of list, for later
 			res.send(contacts);
 		});
 	});
@@ -34,13 +35,13 @@ module.exports = function (app) {
 	//====POST - post new contact to database
 	app.post('/contact', (req, res, next) => {
 
-		let newContact = new Contact.creator(req.body.fname, req.body.lname, req.body.phone);
+		let newContact = new Contact.creator(req.body.firstName, req.body.lastName, req.body.phoneNumber);
 
 		newContact.save((err) => {
 			if (err) throw err;
 			// res.send('successsss');
 			res.send(`Success! - contact added with post: 
-			\n\n <strong>${newContact.fname} ${newContact.lname} ${newContact.phone} </strong>`);
+			\n\n <strong>${newContact.firstName} ${newContact.lastName} ${newContact.phoneNumber} </strong>`);
 		});
 
 		console.log("at /contact -- body: ", req.body);
@@ -53,9 +54,9 @@ module.exports = function (app) {
 			console.log('got inside');
 			Contact.model.findByIdAndUpdate(req.params.id, {
 				//schema
-				fname: req.body.name,
-				lname: req.body.lastname,
-				phone: req.body.phoneNumber
+				firstName: req.body.name,
+				lastName: req.body.lastname,
+				phoneNumber: req.body.phoneNumber
 
 				//callback
 			}, (err, todo) => {
