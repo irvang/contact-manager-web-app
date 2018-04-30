@@ -26,19 +26,20 @@ module.exports = function (app) {
 		//deconstruncting for cleaner code
 		const { firstName, lastName, phoneNumber, email, birthday, notes } = req.body;
 
-		const bdayObj = new Date(birthday).toDateString();
-		console.log('bday: ' + bdayObj);
+		//convert to array, then to mm-dd-yyyy format
+		let bday = birthday.split('-');
+		bday = `${bday[1]}-${bday[2]}-${bday[0]}`;
 
-		const newContact = new Contact.creator(firstName, lastName, phoneNumber, email, bdayObj, notes);
+		const newContact = new Contact.creator(firstName, lastName, phoneNumber, email, bday, notes);
 
 		newContact.save((err) => {
 			if (err) throw err;
 			// res.send('successsss');
 			res.send(`Success! - contact added with post: 
-			\n\n <strong>${firstName} ${lastName} ${phoneNumber} ${bdayObj} </strong>`);
+			\n\n <strong>${firstName} ${lastName} ${phoneNumber} ${bday} </strong>`);
 		});
 
-		console.log("at /contact -- body: ", req.body);
+		// console.log("at /contact -- body: ", req.body);
 	});
 
 	//====PUT - change a contact by its id
@@ -53,7 +54,7 @@ module.exports = function (app) {
 				phoneNumber: req.body.phoneNumber,
 				email: req.body.email,
 				birthday: req.body.birthday,
-				notes: req.body.notes 
+				notes: req.body.notes
 
 				//callback
 			}, (err, todo) => {
@@ -67,14 +68,15 @@ module.exports = function (app) {
 	});
 
 	//====DELETE - delete a contact by its id?
-	app.delete('/contact/:id', (req, res, next) => {
+	app.delete('/contact', (req, res, next) => {
+		console.log('in DELETE', req.body);
 
 		if (req.body.id) {
 			let q = Contact.model.findByIdAndRemove(req.body.id, function (err) {
 				if (err) throw err;
 				res.send('Contact deleted successfully!');
 			});
-			console.log(q.schema.obj);
+			// console.log(q.schema.obj);
 		} else {
 			res.status(404).send();
 		}
