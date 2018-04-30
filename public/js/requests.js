@@ -55,10 +55,16 @@ function getFetch() {
 
 			parsedJsonContactList.forEach((elm) => {
 				const tr = document.createElement('tr');
+				// let newDate = JSON.parse(elm);
+				console.log(typeof elm);
+
 				tr.innerHTML = `
 					<td>${elm.firstName}</td>
 					<td> ${elm.lastName}</td> 
 					<td> ${elm.phoneNumber}</td>
+					<td>${elm.email}</td>
+					<td> ${elm.birthday}</td> 
+					<td> ${elm.notes}</td>
 				`;
 				tableBody.appendChild(tr);
 			});

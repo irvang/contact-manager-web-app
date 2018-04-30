@@ -4,9 +4,8 @@ const mongoose = require('mongoose');
 const contactSchema = mongoose.Schema({
 	firstName: String,
 	lastName: String,
-	phoneNumber: String, 
+	phoneNumber: String,
 	email: String,
-	address: String,
 	birthday: Date,
 	notes: String
 });
@@ -20,19 +19,22 @@ let Contact = mongoose.model('Contact', contactSchema);
 
 // returns a new Contact created by the schema model
 class ContactClass {
-	constructor (name, lastname, phoneNumber) {
+	constructor(name, lastname, phoneNumber, email, birthday, notes) {
 
 		//'Contact' is the schema mdoel
-		return new Contact ({
+		return new Contact({
 			firstName: name,
 			lastName: lastname,
-			phoneNumber: phoneNumber
+			phoneNumber: phoneNumber,
+			email: email,
+			birthday: birthday,
+			notes: notes
 		});
 	}
 }
 
 module.exports = {
-	model: Contact, 
+	model: Contact,
 	creator: ContactClass
 }
 
