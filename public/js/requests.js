@@ -75,7 +75,7 @@ function createTableRows(contactList) {
 		trashBin.dataset.id = elm._id;
 		trashBin.addEventListener('click', function (evt) {
 			// console.log(evt.target.dataset.id);
-			deleteContact(evt.target.dataset.id)
+			deleteContactFetch(evt.target.dataset.id)
 		});
 
 		tableBody.appendChild(tr);
@@ -83,7 +83,7 @@ function createTableRows(contactList) {
 }
 
 //---------------------------
-function deleteContact(_id) {
+function deleteContactFetch(_id) {
 
 	let confirmation = confirm('Are you sure you want to delete this contact?');
 	let bodyId = JSON.stringify({ id: _id });
@@ -97,7 +97,7 @@ function deleteContact(_id) {
 				'Content-Type': 'application/json'
 			})
 		}).then(function (response) {
-			console.log(response);
+			// console.log(response);
 			return response;
 		}).then(function (response) {
 			response.text().then(text => {

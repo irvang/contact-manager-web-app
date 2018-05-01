@@ -49,33 +49,5 @@ email
 address
 birthday
 notes
-
-
 */
 
-/* For JSON generator
-[
-	{
-	  'repeat(20, 20)': {
-		_id: '{{objectId()}}',
-  
-		  firstName: '{{firstName()}}',
-		  lastName: '{{surname()}}',
-  
-		email(tags) {
-		  return `${this.firstName}.${this.lastName}@someCompany.com`;
-		},
-		company: '{{company().toUpperCase()}}',
-		phone: '+1 {{phone()}}',
-	  birthday: `{{integer(0, 12)}}-{{integer(0,31)}}-{{integer(1900, 2018)}} `,
-		notes: ``,
-		tags: [
-			{
-			  'repeat(5)': '{{lorem(1, "words")}}'
-			}
-		  ]
-	   
-	  }
-	}
-  ] 
-  */
