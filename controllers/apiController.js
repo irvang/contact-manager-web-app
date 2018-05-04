@@ -1,5 +1,6 @@
 const bodyParser = require('body-parser');
 const Contact = require('../models/contactModel');
+const path = require('path');
 
 //Assigns methods to app
 module.exports = function (app) {
@@ -9,7 +10,9 @@ module.exports = function (app) {
 
 	//====LANDING page
 	app.get('/landing', (req, res, next) => {
-		res.render('index', { path: req.path });
+		res.render('index');
+		// res.render('index'); 
+		// res.sendFile(path.join(__dirname + '../public'));
 	});
 
 	//====GET - all contacts

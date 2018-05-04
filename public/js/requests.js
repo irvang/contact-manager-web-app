@@ -67,7 +67,7 @@ function createTableRows(contactList) {
 			<td> ${elm.phoneNumber}</td>
 			<td>${elm.email}</td>
 			<td> ${elm.birthday}</td> 
-			<td> ${elm.notes}</td>
+			<td class='largeCell'> ${elm.notes}</td>
 		`;
 
 		var trashBin = tr.insertCell();

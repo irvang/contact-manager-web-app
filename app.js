@@ -15,8 +15,11 @@ const port = process.env.PORT || 3000;
 app.set('view engine', 'ejs');
 
 //====STATIC FILES 
+// app.use(express.static('public'))
+// app.use(express.static(path.join(__dirname, 'public')));
+// app.use('/assets', express.static(__dirname + '/public'));
 app.use('/assets', express.static(__dirname + '/public'));
-
+// console.log(__dirname);
 //====CONTROLLERS
 apiController(app);
 setupController(app);

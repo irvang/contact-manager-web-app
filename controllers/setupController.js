@@ -36,7 +36,7 @@ module.exports = seedContacts;
 				return `${this.firstName}.${this.lastName}@${this.firstName.substring(0,3)}${this.lastName.substring(0,4)}.com`.toLowerCase();
 			},
 			// company: '{{company().toUpperCase()}}',
-			phone: '+1 {{phone()}}',
+			phoneNumber: '+1 {{phone()}}',
 			birthday: `{{integer(1, 12)}}-{{integer(1,31)}}-{{integer(1900, 2018)}} `,
 			notes: `{{lorem(10, "words")}}`,
 
@@ -47,183 +47,183 @@ module.exports = seedContacts;
 
 const contacts = [
 	{
-	  "_id": "5ae7ed2d0a5f9d03a7b6b326",
-	  "firstName": "Sabrina",
-	  "lastName": "Ortiz",
-	  "email": "sabrina.ortiz@saborti.com",
-	  "phone": "+1 (916) 413-3057",
-	  "birthday": "7-7-1953 ",
-	  "notes": "dolore commodo ipsum tempor veniam irure quis adipisicing exercitation magna"
+	  "_id": "5ae866c6bc50809fd57e7c80",
+	  "firstName": "Castaneda",
+	  "lastName": "Compton",
+	  "email": "castaneda.compton@cascomp.com",
+	  "phoneNumber": "+1 (943) 417-3340",
+	  "birthday": "6-10-1977 ",
+	  "notes": "quis esse ea anim Lorem eiusmod nostrud id cillum veniam"
 	},
 	{
-	  "_id": "5ae7ed2d6b8c6cdbb71d8b74",
-	  "firstName": "Hudson",
-	  "lastName": "Brennan",
-	  "email": "hudson.brennan@hudbren.com",
-	  "phone": "+1 (993) 446-3332",
-	  "birthday": "9-8-1959 ",
-	  "notes": "velit non velit dolor eiusmod ad est dolor culpa proident"
+	  "_id": "5ae866c6867c938217fc877e",
+	  "firstName": "Valencia",
+	  "lastName": "Cummings",
+	  "email": "valencia.cummings@valcumm.com",
+	  "phoneNumber": "+1 (805) 529-3222",
+	  "birthday": "10-10-1958 ",
+	  "notes": "laborum ea id id ut occaecat anim Lorem tempor aliquip"
 	},
 	{
-	  "_id": "5ae7ed2d383bebb2646074e4",
-	  "firstName": "Kari",
-	  "lastName": "Carson",
-	  "email": "kari.carson@karcars.com",
-	  "phone": "+1 (803) 493-3200",
-	  "birthday": "6-12-1992 ",
-	  "notes": "irure ut culpa veniam ex eu excepteur velit anim quis"
+	  "_id": "5ae866c6d2e513ec364d47b3",
+	  "firstName": "Guthrie",
+	  "lastName": "Ashley",
+	  "email": "guthrie.ashley@gutashl.com",
+	  "phoneNumber": "+1 (934) 409-3519",
+	  "birthday": "3-2-1941 ",
+	  "notes": "minim minim irure velit aliqua aliquip elit deserunt ullamco est"
 	},
 	{
-	  "_id": "5ae7ed2d9d4a0aa98a780684",
-	  "firstName": "Marks",
-	  "lastName": "Odom",
-	  "email": "marks.odom@marodom.com",
-	  "phone": "+1 (825) 504-2896",
-	  "birthday": "1-14-1940 ",
-	  "notes": "et incididunt do do cillum ad cupidatat est veniam incididunt"
-	},
-	{
-	  "_id": "5ae7ed2d2a22ba7e5a74ce70",
-	  "firstName": "Lillie",
-	  "lastName": "Snow",
-	  "email": "lillie.snow@lilsnow.com",
-	  "phone": "+1 (838) 540-2552",
-	  "birthday": "8-11-1945 ",
-	  "notes": "deserunt cillum exercitation laborum voluptate ex anim nulla reprehenderit in"
-	},
-	{
-	  "_id": "5ae7ed2de02f4ac3b90afd15",
-	  "firstName": "Moore",
-	  "lastName": "Mann",
-	  "email": "moore.mann@moomann.com",
-	  "phone": "+1 (993) 418-3235",
-	  "birthday": "12-30-1925 ",
-	  "notes": "veniam excepteur reprehenderit ullamco et sunt fugiat do excepteur laboris"
-	},
-	{
-	  "_id": "5ae7ed2dbbac41e0ffb4458a",
-	  "firstName": "Rosetta",
-	  "lastName": "Mullen",
-	  "email": "rosetta.mullen@rosmull.com",
-	  "phone": "+1 (802) 441-2822",
-	  "birthday": "3-5-1935 ",
-	  "notes": "eiusmod sit est laborum officia fugiat cupidatat laboris exercitation ad"
-	},
-	{
-	  "_id": "5ae7ed2d8d5c138fe5052a5e",
-	  "firstName": "Lynn",
-	  "lastName": "Schwartz",
-	  "email": "lynn.schwartz@lynschw.com",
-	  "phone": "+1 (975) 438-3380",
-	  "birthday": "6-28-1998 ",
-	  "notes": "nulla cupidatat nostrud minim ea sit enim labore anim eu"
-	},
-	{
-	  "_id": "5ae7ed2dd015ce6a789417dc",
-	  "firstName": "Hayes",
-	  "lastName": "Bradshaw",
-	  "email": "hayes.bradshaw@haybrad.com",
-	  "phone": "+1 (970) 416-2048",
-	  "birthday": "6-23-1960 ",
-	  "notes": "dolor deserunt Lorem anim est sit officia officia eu do"
-	},
-	{
-	  "_id": "5ae7ed2de60ca64086b2d642",
-	  "firstName": "Barry",
-	  "lastName": "Stuart",
-	  "email": "barry.stuart@barstua.com",
-	  "phone": "+1 (865) 518-3486",
-	  "birthday": "1-2-1960 ",
-	  "notes": "laborum velit culpa labore tempor eu adipisicing deserunt cupidatat ea"
-	},
-	{
-	  "_id": "5ae7ed2d0229f0c480afabee",
-	  "firstName": "Matthews",
-	  "lastName": "Sanchez",
-	  "email": "matthews.sanchez@matsanc.com",
-	  "phone": "+1 (923) 484-2003",
-	  "birthday": "3-0-1979 ",
-	  "notes": "amet aliqua pariatur culpa duis reprehenderit deserunt ea laboris quis"
-	},
-	{
-	  "_id": "5ae7ed2d407a63dc6a4906be",
-	  "firstName": "Suzette",
-	  "lastName": "Herman",
-	  "email": "suzette.herman@suzherm.com",
-	  "phone": "+1 (968) 504-3323",
-	  "birthday": "2-13-1914 ",
-	  "notes": "labore in quis aliquip eiusmod ullamco laborum veniam consectetur elit"
-	},
-	{
-	  "_id": "5ae7ed2d76fa29b1f685b045",
-	  "firstName": "Stuart",
-	  "lastName": "Blanchard",
-	  "email": "stuart.blanchard@stublan.com",
-	  "phone": "+1 (894) 507-3820",
-	  "birthday": "7-16-2005 ",
-	  "notes": "id ut mollit laboris dolore et deserunt Lorem veniam aute"
-	},
-	{
-	  "_id": "5ae7ed2dcc5b20575126877e",
-	  "firstName": "Fay",
-	  "lastName": "Conway",
-	  "email": "fay.conway@fayconw.com",
-	  "phone": "+1 (869) 425-2834",
-	  "birthday": "2-13-1999 ",
-	  "notes": "exercitation quis ad elit duis sit eu excepteur labore esse"
-	},
-	{
-	  "_id": "5ae7ed2d0a5d3349eea640f9",
-	  "firstName": "Howe",
-	  "lastName": "Tillman",
-	  "email": "howe.tillman@howtill.com",
-	  "phone": "+1 (859) 539-3451",
-	  "birthday": "2-25-1942 ",
-	  "notes": "sunt in qui magna nostrud occaecat esse sit proident est"
-	},
-	{
-	  "_id": "5ae7ed2d136fd1508c434c27",
-	  "firstName": "Melisa",
+	  "_id": "5ae866c61a1142236ece2ff3",
+	  "firstName": "Goldie",
 	  "lastName": "Kirby",
-	  "email": "melisa.kirby@melkirb.com",
-	  "phone": "+1 (865) 505-2409",
-	  "birthday": "2-22-1945 ",
-	  "notes": "anim eu excepteur cupidatat exercitation enim labore eu do anim"
+	  "email": "goldie.kirby@golkirb.com",
+	  "phoneNumber": "+1 (863) 552-3400",
+	  "birthday": "4-7-1979 ",
+	  "notes": "non consectetur Lorem excepteur in et cupidatat anim proident adipisicing"
 	},
 	{
-	  "_id": "5ae7ed2d8a729660341c4370",
-	  "firstName": "Holloway",
-	  "lastName": "Neal",
-	  "email": "holloway.neal@holneal.com",
-	  "phone": "+1 (824) 591-2422",
-	  "birthday": "5-12-1910 ",
-	  "notes": "in ullamco id aliquip enim incididunt do mollit deserunt minim"
+	  "_id": "5ae866c6a44c0a1f482dd154",
+	  "firstName": "Cecile",
+	  "lastName": "Bradford",
+	  "email": "cecile.bradford@cecbrad.com",
+	  "phoneNumber": "+1 (958) 440-3230",
+	  "birthday": "2-13-1922 ",
+	  "notes": "irure pariatur sint id cillum consequat labore laboris fugiat et"
 	},
 	{
-	  "_id": "5ae7ed2dc4f436217b725df3",
-	  "firstName": "Laurie",
-	  "lastName": "Chase",
-	  "email": "laurie.chase@lauchas.com",
-	  "phone": "+1 (921) 416-2530",
-	  "birthday": "8-17-1909 ",
-	  "notes": "aliqua enim laboris qui proident irure id proident est incididunt"
+	  "_id": "5ae866c6a6cb2e61ae8572f6",
+	  "firstName": "Leann",
+	  "lastName": "Flowers",
+	  "email": "leann.flowers@leaflow.com",
+	  "phoneNumber": "+1 (951) 510-3806",
+	  "birthday": "10-31-1938 ",
+	  "notes": "nostrud aliqua anim consequat id culpa pariatur ea dolore non"
 	},
 	{
-	  "_id": "5ae7ed2d5a8a980987ad3d92",
-	  "firstName": "Daisy",
-	  "lastName": "Macdonald",
-	  "email": "daisy.macdonald@daimacd.com",
-	  "phone": "+1 (846) 525-2901",
-	  "birthday": "2-22-2011 ",
-	  "notes": "occaecat occaecat laboris veniam in nisi nostrud officia aliqua esse"
+	  "_id": "5ae866c63b7b3e614f4bf9b2",
+	  "firstName": "Rene",
+	  "lastName": "Salas",
+	  "email": "rene.salas@rensala.com",
+	  "phoneNumber": "+1 (920) 487-3248",
+	  "birthday": "9-16-1987 ",
+	  "notes": "cillum ex irure occaecat in in pariatur aute sit tempor"
 	},
 	{
-	  "_id": "5ae7ed2da359f01cc029c2f7",
-	  "firstName": "James",
-	  "lastName": "Webster",
-	  "email": "james.webster@jamwebs.com",
-	  "phone": "+1 (907) 507-2323",
-	  "birthday": "5-12-2009 ",
-	  "notes": "eu Lorem labore dolor ea est culpa aute culpa proident"
+	  "_id": "5ae866c68706123e75e20276",
+	  "firstName": "Nicole",
+	  "lastName": "Blanchard",
+	  "email": "nicole.blanchard@nicblan.com",
+	  "phoneNumber": "+1 (805) 506-3280",
+	  "birthday": "9-7-1987 ",
+	  "notes": "aute sunt sunt labore occaecat excepteur sint tempor dolor sint"
+	},
+	{
+	  "_id": "5ae866c682006cb732776d55",
+	  "firstName": "Dionne",
+	  "lastName": "Cervantes",
+	  "email": "dionne.cervantes@diocerv.com",
+	  "phoneNumber": "+1 (925) 448-2758",
+	  "birthday": "12-28-2009 ",
+	  "notes": "exercitation elit sit magna laborum amet commodo veniam eu veniam"
+	},
+	{
+	  "_id": "5ae866c62a54968cd1141344",
+	  "firstName": "Jeannine",
+	  "lastName": "Griffith",
+	  "email": "jeannine.griffith@jeagrif.com",
+	  "phoneNumber": "+1 (825) 452-2019",
+	  "birthday": "12-20-1952 ",
+	  "notes": "excepteur voluptate excepteur minim anim et nulla quis labore pariatur"
+	},
+	{
+	  "_id": "5ae866c60f3fbdea40f4a5ce",
+	  "firstName": "Matthews",
+	  "lastName": "Roy",
+	  "email": "matthews.roy@matroy.com",
+	  "phoneNumber": "+1 (925) 554-2888",
+	  "birthday": "3-26-1971 ",
+	  "notes": "dolore incididunt ad dolore sit proident labore reprehenderit esse et"
+	},
+	{
+	  "_id": "5ae866c6ce0390dceb50837d",
+	  "firstName": "Branch",
+	  "lastName": "Gould",
+	  "email": "branch.gould@bragoul.com",
+	  "phoneNumber": "+1 (944) 403-2954",
+	  "birthday": "8-18-1924 ",
+	  "notes": "pariatur occaecat velit voluptate qui occaecat pariatur aliquip proident elit"
+	},
+	{
+	  "_id": "5ae866c66f66317f849756eb",
+	  "firstName": "Mathews",
+	  "lastName": "Battle",
+	  "email": "mathews.battle@matbatt.com",
+	  "phoneNumber": "+1 (956) 484-2357",
+	  "birthday": "6-26-1998 ",
+	  "notes": "nulla laborum laborum commodo elit adipisicing nisi adipisicing aliqua commodo"
+	},
+	{
+	  "_id": "5ae866c63e549461833c050c",
+	  "firstName": "Mccarty",
+	  "lastName": "Barr",
+	  "email": "mccarty.barr@mccbarr.com",
+	  "phoneNumber": "+1 (800) 578-3413",
+	  "birthday": "8-6-1996 ",
+	  "notes": "consequat dolore occaecat labore aliquip eiusmod duis veniam eu irure"
+	},
+	{
+	  "_id": "5ae866c6e63a7cd6a33ed6a0",
+	  "firstName": "Opal",
+	  "lastName": "Lane",
+	  "email": "opal.lane@opalane.com",
+	  "phoneNumber": "+1 (983) 491-2097",
+	  "birthday": "10-21-2009 ",
+	  "notes": "proident occaecat pariatur commodo ipsum sit occaecat et voluptate mollit"
+	},
+	{
+	  "_id": "5ae866c6a1f1566be48b2cbe",
+	  "firstName": "Snider",
+	  "lastName": "Cochran",
+	  "email": "snider.cochran@snicoch.com",
+	  "phoneNumber": "+1 (800) 557-2538",
+	  "birthday": "9-21-1987 ",
+	  "notes": "elit exercitation dolore magna excepteur culpa elit sunt ut magna"
+	},
+	{
+	  "_id": "5ae866c64f8dbba26c3a4ca5",
+	  "firstName": "Constance",
+	  "lastName": "Rodgers",
+	  "email": "constance.rodgers@conrodg.com",
+	  "phoneNumber": "+1 (951) 582-2598",
+	  "birthday": "12-31-1999 ",
+	  "notes": "nostrud officia laborum ea ut laboris ad dolore mollit excepteur"
+	},
+	{
+	  "_id": "5ae866c62715808b8220cfc7",
+	  "firstName": "Cote",
+	  "lastName": "Cash",
+	  "email": "cote.cash@cotcash.com",
+	  "phoneNumber": "+1 (977) 505-2459",
+	  "birthday": "2-16-1975 ",
+	  "notes": "laborum eu aliquip fugiat incididunt ad cupidatat veniam labore non"
+	},
+	{
+	  "_id": "5ae866c6f81446d35989b311",
+	  "firstName": "Mccarthy",
+	  "lastName": "Benton",
+	  "email": "mccarthy.benton@mccbent.com",
+	  "phoneNumber": "+1 (958) 449-2740",
+	  "birthday": "7-6-1993 ",
+	  "notes": "tempor ex in id reprehenderit quis dolor ullamco elit culpa"
+	},
+	{
+	  "_id": "5ae866c6b6965f290cb1953a",
+	  "firstName": "Lynda",
+	  "lastName": "Little",
+	  "email": "lynda.little@lynlitt.com",
+	  "phoneNumber": "+1 (839) 461-3655",
+	  "birthday": "11-26-1954 ",
+	  "notes": "Lorem velit eu anim aliquip minim ea do ut deserunt"
 	}
   ]

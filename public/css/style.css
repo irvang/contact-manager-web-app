@@ -2,10 +2,11 @@
 	box-sizing: border-box;
 	padding: 0;
 	margin: 0;
+	font-family: 'Courier New', Courier, monospace;
+	font-size: 14px;
 }
 
 /*====TABLE - Border and border-collapse */
-
 table, th, td {
 	border: 1px solid blue;
 	border-collapse: collapse;
@@ -15,26 +16,31 @@ table {
 	width: 97%;
 	margin: 0 auto;
 }
+
 /*  */
 th, td {
-	padding:3px 3px;
+	padding: 3px 3px;
 	text-align: center;
+	white-space: nowrap;
+	overflow: hidden;
+	height: 2rem;
 }
+
+/* Text wraps and is a little smaller */
+.largeCell {
+	white-space: normal;
+	font-size: 0.8rem;
+}
+
 #responseDisplay {
 	width: 97%;
 	margin: 0 auto;
 }
 
 td.trashIcon {
-	/* 	background-image: url("../img/trash-icon.png"); */
-		/* For remote image, use next line */
-		background-image: url("http://irvingangulo.com/assets/cm-f/contact-manager/img/trash-icon.png");
-		
-		/* background-color: transparent; */
-		background-position: center center;
-		background-repeat: no-repeat;
-		width: 20px;
-		/* padding-left: 5px;
-			padding-right: 5px; */
-		/* padding: 30px; */
-	 }
+	background-image: url("../img/trash-icon.png");
+	/* background-color: transparent; */
+	background-position: center center;
+	background-repeat: no-repeat;
+	width: 20px;
+}
