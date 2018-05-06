@@ -11,3 +11,13 @@ onsubmit='return somefunction();'
 https://stackoverflow.com/questions/5195933/with-form-validation-why-onsubmit-return-functionname-instead-of-onsubmit
 
 Backlog, ready, in progress, review, acceptance, done
+
+
+Popup
+https://www.w3schools.com/howto/howto_js_popup.asp
+
+Tooltip:
+https://www.w3schools.com/howto/howto_css_tooltip.asp
+
+How to - clickable dropdown:
+https://www.w3schools.com/howto/howto_js_dropdown.asp

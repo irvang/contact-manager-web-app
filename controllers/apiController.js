@@ -46,18 +46,19 @@ module.exports = function (app) {
 	});
 
 	//====PUT - change a contact by its id
-	app.put('/contact/:id', (req, res, next) => {
-
-		if (req.params.id) {
+	app.put('/update-contact', (req, res, next) => {
+		console.log('body', req.body);
+		const { firstName, lastName, phoneNumber, email, birthday, notes, id } = req.body;
+		if (id) {
 			console.log('got inside');
-			Contact.model.findByIdAndUpdate(req.params.id, {
+			Contact.model.findByIdAndUpdate(id, {
 				//schema
-				firstName: req.body.name,
-				lastName: req.body.lastname,
-				phoneNumber: req.body.phoneNumber,
-				email: req.body.email,
-				birthday: req.body.birthday,
-				notes: req.body.notes
+				firstName: firstName,
+				lastName: lastName,
+				phoneNumber: phoneNumber,
+				email: email,
+				birthday: birthday,
+				notes: notes
 
 				//callback
 			}, (err, todo) => {

@@ -44,3 +44,8 @@ td.trashIcon {
 	background-repeat: no-repeat;
 	width: 20px;
 }
+
+.editButton {
+	background-color: lightseagreen;
+	color: white;
+}

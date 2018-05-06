@@ -4,10 +4,8 @@ const postFetch = (function () {
 	const responseDisplay = document.querySelector('#responseDisplay');
 
 	return function () {
-
 		inputs.forEach(function (item) {
 			myObject[item.name] = item.value;
-
 		});
 
 		let fetchObj = fetch('/contact', {
@@ -62,24 +60,96 @@ function createTableRows(contactList) {
 		const tr = document.createElement('tr');
 
 		tr.innerHTML = `
-			<td>${elm.firstName}</td>
-			<td> ${elm.lastName}</td> 
-			<td> ${elm.phoneNumber}</td>
-			<td>${elm.email}</td>
-			<td> ${elm.birthday}</td> 
-			<td class='largeCell'> ${elm.notes}</td>
+			<td itemprop='firstName'>${elm.firstName}</td>
+			<td itemprop='lastName'>${elm.lastName}</td> 
+			<td itemprop='phoneNumber'>${elm.phoneNumber}</td>
+			<td itemprop='email'>${elm.email}</td>
+			<td itemprop='birthday'>${elm.birthday}</td> 
+			<td itemprop='notes' class='largeCell'>${elm.notes}</td>
 		`;
 
-		var trashBin = tr.insertCell();
+		//id added to row and to button
+		createEditButton(tr, elm);
+
+		//create TRASHBIN
+		const trashBin = tr.insertCell();
 		trashBin.classList.add('trashIcon');
 		trashBin.dataset.id = elm._id;
 		trashBin.addEventListener('click', function (evt) {
-			// console.log(evt.target.dataset.id);
 			deleteContactFetch(evt.target.dataset.id)
 		});
 
 		tableBody.appendChild(tr);
 	});
+}
+
+function createEditButton(tr, elm) {
+	//create BUTTON
+	const editCell = tr.insertCell();
+	const btn = document.createElement('button');
+	btn.dataset.id = elm._id;
+	btn.textContent = 'Edit';
+	btn.classList.add('editButton');
+	btn.addEventListener('click', makeEditable);
+	editCell.appendChild(btn);
+
+	function makeEditable(evt) {
+		this.textContent = 'Update';
+		this.removeEventListener('click', makeEditable);//this is the button
+		this.addEventListener('click', updateContact);
+		tr.contentEditable = 'true';
+		// console.log(this);
+	}
+
+	function updateContact(evt) {
+
+		putFetch(tr, this.dataset.id);
+		tr.contentEditable = 'false';
+		this.textContent = 'Edit';
+		this.removeEventListener('click', updateContact);//this is the button
+		this.addEventListener('click', makeEditable);
+
+		// console.log(this);
+	}
+}
+
+function putFetch(tr, id) {
+	const responseDisplay = document.querySelector('#responseDisplay');
+
+	let cells = tr.cells;
+	let obj = {};
+	obj.id = id;
+	for (let i = 0; i < cells.length; i++) {
+		if (cells[i].attributes.itemprop) {
+			// cells[i].contentEditable = true;
+			let prop = cells[i].attributes.itemprop.value;
+			let val = tr.cells[i].textContent;
+			obj[prop] = val;
+		}
+	}
+	console.log(this);
+
+	let fetchObj = fetch('/update-contact', {
+		method: 'PUT', // or 'PUT'
+		body: JSON.stringify(obj), // data can be `string` or {object}!
+		headers: new Headers({
+			'Content-Type': 'application/json'
+		})
+	});
+
+	let response = fetchObj.then(res => {
+		// console.log(res.statusText);
+		return res;
+	});
+
+	response.catch(error => {
+		console.error('Error:', error)
+	})
+		.then(res => {
+			res.text().then(text => {
+				responseDisplay.innerHTML = text;
+			});
+		});
 }
 
 //---------------------------
