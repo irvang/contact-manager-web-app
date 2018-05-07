@@ -1,6 +1,6 @@
 //====POST
 function postFetch(evt) {
-	evt.preventDefault();
+	evt.preventDefault();//prevents form submisison
 	const myObject = {};
 	const inputs = document.querySelectorAll('form#myForm input');
 	const responseDisplay = document.querySelector('#responseDisplay');
@@ -30,6 +30,8 @@ function postFetch(evt) {
 				responseDisplay.innerHTML = text;
 			});
 		});
+
+		// getFetch();//reload table
 };
 
 //====GET
