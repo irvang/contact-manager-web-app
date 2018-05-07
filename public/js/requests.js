@@ -1,3 +1,4 @@
+//====POST
 const postFetch = (function () {
 	const myObject = {};
 	const inputs = document.querySelectorAll('form#myForm > input');
@@ -32,7 +33,7 @@ const postFetch = (function () {
 	}
 })();
 
-//====FETCH
+//====GET
 function getFetch() {
 
 	// see MDN's fetch() for options object passed as second parameter
@@ -83,6 +84,10 @@ function createTableRows(contactList) {
 	});
 }
 
+/* 
+Creates edit button and adds listeners. 
+Toggles button's textContent, contenteditable, and listener functions
+*/
 function createEditButton(tr, elm) {
 	//create BUTTON
 	const editCell = tr.insertCell();
@@ -94,65 +99,56 @@ function createEditButton(tr, elm) {
 	editCell.appendChild(btn);
 
 	function makeEditable(evt) {
+		//this === button
 		this.textContent = 'Update';
-		this.removeEventListener('click', makeEditable);//this is the button
+		this.removeEventListener('click', makeEditable);
 		this.addEventListener('click', updateContact);
 		tr.contentEditable = 'true';
-		// console.log(this);
 	}
 
 	function updateContact(evt) {
-
 		putFetch(tr, this.dataset.id);
 		tr.contentEditable = 'false';
+		//this === button
 		this.textContent = 'Edit';
-		this.removeEventListener('click', updateContact);//this is the button
+		this.removeEventListener('click', updateContact);
 		this.addEventListener('click', makeEditable);
-
-		// console.log(this);
 	}
 }
 
+//====PUT
 function putFetch(tr, id) {
 	const responseDisplay = document.querySelector('#responseDisplay');
 
-	let cells = tr.cells;
-	let obj = {};
-	obj.id = id;
-	for (let i = 0; i < cells.length; i++) {
-		if (cells[i].attributes.itemprop) {
-			// cells[i].contentEditable = true;
-			let prop = cells[i].attributes.itemprop.value;
-			let val = tr.cells[i].textContent;
+	let cells = tr.cells;//get cells
+	let obj = {};//will hold properties to update
+	obj.id = id;//use this id to findByIdAndUpdate with express
+	for (let i = 0; i < cells.length; i++) {//cells is array-like
+		if (cells[i].attributes.itemprop) {//if there is itemprop
+			let prop = cells[i].attributes.itemprop.value;//itemprop: name, last, etc
+			let val = tr.cells[i].textContent;//values
 			obj[prop] = val;
 		}
 	}
-	console.log(this);
 
-	let fetchObj = fetch('/update-contact', {
-		method: 'PUT', // or 'PUT'
-		body: JSON.stringify(obj), // data can be `string` or {object}!
+	fetch('/update-contact', {
+		method: 'PUT',
+		body: JSON.stringify(obj),	//convert to JSON
 		headers: new Headers({
 			'Content-Type': 'application/json'
 		})
-	});
-
-	let response = fetchObj.then(res => {
-		// console.log(res.statusText);
-		return res;
-	});
-
-	response.catch(error => {
+	}).then(res => {
+		return res;// res.statusText;
+	}).catch(error => {
 		console.error('Error:', error)
-	})
-		.then(res => {
-			res.text().then(text => {
-				responseDisplay.innerHTML = text;
-			});
+	}).then(res => {
+		res.text().then(text => {
+			responseDisplay.innerHTML = text;
 		});
+	});
 }
 
-//---------------------------
+//====DELETE
 function deleteContactFetch(_id) {
 
 	let confirmation = confirm('Are you sure you want to delete this contact?');
@@ -181,7 +177,7 @@ function deleteContactFetch(_id) {
 	}
 }
 
-/* 
+// /* 
 
 
 
@@ -192,93 +188,93 @@ function deleteContactFetch(_id) {
 
 
 
-*/
-//====POST FETCH
-const getInputValues = (function () {
-	//create and select only once
-	const myObject = {};
-	const inputs = document.querySelectorAll('form#myForm > input');
+// */
+// //====POST FETCH
+// const getInputValues = (function () {
+// 	//create and select only once
+// 	const myObject = {};
+// 	const inputs = document.querySelectorAll('form#myForm > input');
 
-	//add key value pairs extracted from the inputs
-	return function () {
-		inputs.forEach(function (item) {
-			myObject[item.name] = item.value;
-		});
-		return myObject;
-	}
-})();
+// 	//add key value pairs extracted from the inputs
+// 	return function () {
+// 		inputs.forEach(function (item) {
+// 			myObject[item.name] = item.value;
+// 		});
+// 		return myObject;
+// 	}
+// })();
 
-function postFetch2() {
+// function postFetch2() {
 
-	const inputs = getInputValues();
+// 	const inputs = getInputValues();
 
-	let fetchObj = fetch('/contact', {
-		method: 'POST', // or 'PUT'
-		body: JSON.stringify(inputs), // data can be `string` or {object}!
-		headers: new Headers({
-			'Content-Type': 'application/json'
-		})
-	});
+// 	let fetchObj = fetch('/contact', {
+// 		method: 'POST', // or 'PUT'
+// 		body: JSON.stringify(inputs), // data can be `string` or {object}!
+// 		headers: new Headers({
+// 			'Content-Type': 'application/json'
+// 		})
+// 	});
 
-	let response = fetchObj.then(res => {
+// 	let response = fetchObj.then(res => {
 
-		// console.log(res.statusText);
-		return res;
-	});
+// 		// console.log(res.statusText);
+// 		return res;
+// 	});
 
-	response.catch(error => {
-		console.error('Error:', error)
-	})
-		.then(res => {
-			res.text().then(text => {
-				document.querySelector('div').innerHTML = text;
-			});
-		});
-}
+// 	response.catch(error => {
+// 		console.error('Error:', error)
+// 	})
+// 		.then(res => {
+// 			res.text().then(text => {
+// 				document.querySelector('div').innerHTML = text;
+// 			});
+// 		});
+// }
 
-//====GET
-function testGet() {
+// //====GET
+// function testGet() {
 
-	let xhr = new XMLHttpRequest();
+// 	let xhr = new XMLHttpRequest();
 
-	xhr.open('get', '/contacts', true);
-	xhr.setRequestHeader("Content-type", "text/html");
+// 	xhr.open('get', '/contacts', true);
+// 	xhr.setRequestHeader("Content-type", "text/html");
 
-	xhr.onreadystatechange = function () {
-		// Process the server response here.
-		// console.log('allHeaders: ', xhr.getAllResponseHeaders());
+// 	xhr.onreadystatechange = function () {
+// 		// Process the server response here.
+// 		// console.log('allHeaders: ', xhr.getAllResponseHeaders());
 
-		if (this.readyState == 4 && this.status == 200) {
+// 		if (this.readyState == 4 && this.status == 200) {
 
-			formatGetResponse(xhr.responseText);
-			// console.log('responseText: ', xhr.responseText);
-			// console.log(typeof this.readyState, this.status);
-			// console.log('responseText: ', xhr);
-		}
+// 			formatGetResponse(xhr.responseText);
+// 			// console.log('responseText: ', xhr.responseText);
+// 			// console.log(typeof this.readyState, this.status);
+// 			// console.log('responseText: ', xhr);
+// 		}
 
-	}
-	// xhr.onload = function () { }
-	// let data = JSON.stringify({ firstname: 'Jane', lastname: 'Doer' });
-	// xhr.send(data);
+// 	}
+// 	// xhr.onload = function () { }
+// 	// let data = JSON.stringify({ firstname: 'Jane', lastname: 'Doer' });
+// 	// xhr.send(data);
 
-	xhr.send();
-	return false;
-}
+// 	xhr.send();
+// 	return false;
+// }
 
-function formatGetResponse(resText) {
-	const contacts = JSON.parse(resText);
+// function formatGetResponse(resText) {
+// 	const contacts = JSON.parse(resText);
 
-	let tableBody = document.querySelector('#contactsTable > tbody');
-	tableBody.innerHTML = '';
+// 	let tableBody = document.querySelector('#contactsTable > tbody');
+// 	tableBody.innerHTML = '';
 
-	contacts.forEach((elm, index, array) => {
-		let tr = document.createElement('tr');
-		tr.innerHTML = `<td>${elm.firstName}</td><td> ${elm.lastName}</td> <td> ${elm.phoneNumber}</td>`;
-		tableBody.appendChild(tr);
-	});
-}
+// 	contacts.forEach((elm, index, array) => {
+// 		let tr = document.createElement('tr');
+// 		tr.innerHTML = `<td>${elm.firstName}</td><td> ${elm.lastName}</td> <td> ${elm.phoneNumber}</td>`;
+// 		tableBody.appendChild(tr);
+// 	});
+// }
 
-function comingSoon(verb) {
-	document.querySelector('div').innerHTML = '<strong>' + verb + '</strong>' + ' Coming soon!';
-}
+// function comingSoon(verb) {
+// 	document.querySelector('div').innerHTML = '<strong>' + verb + '</strong>' + ' Coming soon!';
+// }
 
