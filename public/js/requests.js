@@ -1,37 +1,36 @@
 //====POST
-const postFetch = (function () {
+function postFetch(evt) {
+	evt.preventDefault();
 	const myObject = {};
-	const inputs = document.querySelectorAll('form#myForm > input');
+	const inputs = document.querySelectorAll('form#myForm input');
 	const responseDisplay = document.querySelector('#responseDisplay');
 
-	return function () {
-		inputs.forEach(function (item) {
-			myObject[item.name] = item.value;
-		});
+	inputs.forEach(function (item) {
+		myObject[item.name] = item.value;
+	});
 
-		let fetchObj = fetch('/contact', {
-			method: 'POST', // or 'PUT'
-			body: JSON.stringify(myObject), // data can be `string` or {object}!
-			headers: new Headers({
-				'Content-Type': 'application/json'
-			})
-		});
-
-		let response = fetchObj.then(res => {
-			// console.log(res.statusText);
-			return res;
-		});
-
-		response.catch(error => {
-			console.error('Error:', error)
+	let fetchObj = fetch('/contact', {
+		method: 'POST', // or 'PUT'
+		body: JSON.stringify(myObject), // data can be `string` or {object}!
+		headers: new Headers({
+			'Content-Type': 'application/json'
 		})
-			.then(res => {
-				res.text().then(text => {
-					responseDisplay.innerHTML = text;
-				});
+	});
+
+	let response = fetchObj.then(res => {
+		// console.log(res.statusText);
+		return res;
+	});
+
+	response.catch(error => {
+		console.error('Error:', error)
+	})
+		.then(res => {
+			res.text().then(text => {
+				responseDisplay.innerHTML = text;
 			});
-	}
-})();
+		});
+};
 
 //====GET
 function getFetch() {

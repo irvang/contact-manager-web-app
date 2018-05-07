@@ -10,47 +10,62 @@
 </head>
 
 <body>
-
+	<!-- FORM -->
 	<form id="myForm" name="myForm">
 		<fieldset>
-			<legend>New Contact Information</legend>		
-			Name:
+			<legend>New Contact Information</legend>
+
+			<label for="firstName">Name:
+				<br>
+				<input id="firstName" type="text" name='firstName' value="Someone">
+			</label>
+
+			<label for="lastName">LastName:
+				<br>
+				<input id="lastName" type="text" name='lastName' value="Else">
+			</label>
+
+
+			<label for="phoneNumber">Phone Number:
+				<br>
+				<input id="phoneNumber" type="text" name='phoneNumber' value="7775555">
+			</label>
+
+
+			<label for="email">Email address:
+				<br>
+				<input id="email" type="email" name='email' value="some@example.com">
+			</label>
+
+
+			<label for="birthday">Birthday:
+				<br>
+				<input id="birthday" type="date" name='birthday' value="1979-12-04">
+			</label>
+
+
+			<label for="notes">Notes:
+				<br>
+				<input id="notes" type="text" name='notes' value="Lorem ipsum dolor sit amet consectetur adipisicing elit.">
+			</label>
+
 			<br>
-			<input id="firstName" type="text" name='firstName' value="Someone">
-			<br> LastName:
-			<br>
-			<input id="lastName" type="text" name='lastName' value="Else">
-			<br> Phone Number:
-			<br>
-			<input id="phoneNumber" type="text" name='phoneNumber' value="7775555">
-			<br> Email address:
-			<br>
-			<input id="email" type="email" name='email' value="some@example.com">
-			<br> Birthday:
-			<br>
-			<input id="birthday" type="date" name='birthday' value="1979-12-04">
-			<br> Notes:
-			<br>
-			<input id="notes" type="text" name='notes' value="Lorem ipsum dolor sit amet consectetur adipisicing elit.">	
+			<button id="post-btn">Save Contact</button>
 		</fieldset>
 
 	</form>
 
 	<br>
-	<button id="post">Save Contact</button>
+
 	<button id="get">Get Contacts</button>
-	<!-- <button id="put" onclick="comingSoon(this.textContent);">PUT</button>
-	<button id="delete" onclick="comingSoon(this.textContent);">DELETE</button>
-
-	<button id="" onclick="getInputValues();">getInputValues()</button>
-	<button id="" onclick="testGet()">GET All contacts</button> -->
 
 	<br>
 	<br>
-
+	<!-- DISPLAY RESPONSE -->
 	<div id="responseDisplay"> &nbsp;</div>
 	<br>
 
+	<!-- TABLE -->
 	<table id="contactsTable">
 		<thead>
 			<tr>
