@@ -9,7 +9,7 @@ module.exports = function (app) {
 	app.use(bodyParser.urlencoded({ extended: true }));
 
 	//====LANDING page
-	app.get('/landing', (req, res, next) => {
+	app.get('/', (req, res, next) => {
 		res.render('index');
 		// res.render('index'); 
 		// res.sendFile(path.join(__dirname + '../public'));
