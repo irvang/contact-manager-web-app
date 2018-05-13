@@ -11,7 +11,7 @@
 	<!-- BOOTSTRAP -->
 	<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
 	 crossorigin="anonymous"> -->
-
+	<script src="assets/js/table-sort.js"></script>
 </head>
 
 <body>
@@ -77,14 +77,14 @@
 	<table id="contactsTable">
 		<thead>
 			<tr>
-				<th>Name</th>
-				<th>Last Name</th>
-				<th>Phone</th>
-				<th>Email</th>
-				<th>DOB</th>
-				<th>Notes</th>
-				<th>Edit</th>
-				<th>Delete</th>
+				<th id="th-firstName" >Name</th>
+				<th id="th-lastName" onclick="sortTable(1);">Last Name</th>
+				<th id="th-phone">Phone</th>
+				<th id="th-email">Email</th>
+				<th id="th-dob">DOB</th>
+				<th id="th-notes">Notes</th>
+				<th id="">Edit</th>
+				<th id="">Delete</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -94,9 +94,10 @@
 
 	<!-- SCRIPTS -->
 	<script src="assets/js/requests.js"></script>
-	<script src="assets/js/add-listeners.js"></script>
 	<script src="assets/js/main.js"></script>
-
+	<script src="assets/js/table-sort.js"></script>
+	<script src="assets/js/add-listeners.js"></script>
+	<!-- <script src="assets/table-sort.js"></script> -->
 
 	<!-- <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
 	 crossorigin="anonymous"></script>
