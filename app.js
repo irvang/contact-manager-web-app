@@ -12,7 +12,8 @@ const setupController = require('./controllers/setupController');
 const port = process.env.PORT || 3000;
 
 //====VIEW
-app.set('view engine', 'ejs');
+// app.set('view engine', 'ejs');
+// app.use('/', express.static('views'));//rendering static html
 
 //====STATIC FILES 
 app.use('/assets', express.static(__dirname + '/public'));

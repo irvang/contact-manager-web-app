@@ -1,3 +1,4 @@
+const express = require('express');
 const bodyParser = require('body-parser');
 const Contact = require('../models/contactModel');
 const path = require('path');
@@ -9,11 +10,13 @@ module.exports = function (app) {
 	app.use(bodyParser.urlencoded({ extended: true }));
 
 	//====LANDING page
-	app.get('/', (req, res, next) => {
-		res.render('index');
-		// res.render('index'); 
-		// res.sendFile(path.join(__dirname + '../public'));
-	});
+	// app.get('/', (req, res, next) => {
+	// 	res.render('index');
+	// 	// res.render('index'); 
+	// 	// res.sendFile(path.join(__dirname + '../public'));
+	// });
+
+	app.use('/', express.static('views'));//rendering static html
 
 	//====GET - all contacts
 	app.get('/contacts', (req, res, next) => {
@@ -22,7 +25,7 @@ module.exports = function (app) {
 			// console.log(contacts.length);//send lenght of list, for later
 			res.send(contacts);
 		});
-	});
+	}); 
 
 	//====POST - post new contact to database
 	app.post('/contact', (req, res, next) => {

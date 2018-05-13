@@ -40,7 +40,6 @@ fieldset label {
 }
 
 /*====TABLE - Border and border-collapse */
-
 table, th, td {
 	border: 1px solid blue;
 	border-collapse: collapse;
@@ -51,7 +50,6 @@ table {
 	margin: 0 auto;
 }
 
-/*  */
 
 th, td {
 	padding: 3px 3px;
@@ -62,7 +60,6 @@ th, td {
 }
 
 /* Text wraps and is a little smaller */
-
 .largeCell {
 	white-space: normal;
 	font-size: 0.8rem;
