@@ -31,7 +31,7 @@ function postFetch(evt) {
 			});
 		}); 
 
-		// getFetch();//reload table
+	// getFetch();//reload table
 };
 
 //====GET
@@ -177,5 +177,3 @@ function deleteContactFetch(_id) {
 
 	}
 }
-
-
