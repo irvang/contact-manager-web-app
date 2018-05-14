@@ -20,41 +20,41 @@
 		<fieldset>
 			<legend>New Contact Information</legend>
 
-			<div class="form-group">
+			<!-- <div class="form-group"> -->
 				<label for="firstName">Name:
 					<br>
-					<input id="firstName" type="text" name='firstName' value="Someone">
+					<input id="firstName" type="text" name='firstName' placeholder="Someone">
 				</label>
-			</div>
+			<!-- </div> -->
 
-			<div class="form-group">
+			<!-- <div class="form-group"> -->
 				<label for="lastName">LastName:
 					<br>
-					<input id="lastName" type="text" name='lastName' value="Else">
+					<input id="lastName" type="text" name='lastName' placeholder="Else">
 				</label>
-			</div>
+			<!-- </div> -->
 
 			<label for="phoneNumber">Phone Number:
 				<br>
-				<input id="phoneNumber" type="text" name='phoneNumber' value="7775555">
+				<input id="phoneNumber" type="text" name='phoneNumber' placeholder="7775555">
 			</label>
 
 
 			<label for="email">Email address:
 				<br>
-				<input id="email" type="email" name='email' value="some@example.com">
+				<input id="email" type="email" name='email' placeholder="some@example.com">
 			</label>
 
 
 			<label for="birthday">Birthday:
 				<br>
-				<input id="birthday" type="date" name='birthday' value="1979-12-04">
+				<input id="birthday" type="date" name='birthday' placeholder="1979-12-04">
 			</label>
 
 
 			<label for="notes">Notes:
 				<br>
-				<input id="notes" type="text" name='notes' value="Lorem ipsum dolor sit amet consectetur adipisicing elit.">
+				<input id="notes" type="text" name='notes' placeholder="Lorem ipsum dolor sit amet consectetur adipisicing elit.">
 			</label>
 
 			<br>
@@ -66,6 +66,17 @@
 	<br>
 
 	<button id="get">Get Contacts</button>
+	<br>
+
+	<!-- SEARCH INPUT -->
+	<input type="text" id="search-input" placeholder="Search for names.." title="Type in a name">
+
+	<select id='propToFilter' name="options">
+		<option value="0" data-val='0'>Name</option>
+		<option value="1" data-val='1'>Last Name</option>
+		<option value="2">Phone Number</option>
+		<option value="3">Email</option>
+	</select>
 
 	<br>
 	<br>
@@ -94,17 +105,12 @@
 
 	<!-- SCRIPTS -->
 	<script src="assets/js/requests.js"></script>
+	<script src="assets/js/filter-by-property.js"></script>
 	<script src="assets/js/table-sort.js"></script>
-	<script src="assets/js/main.js"></script>
-	<script src="assets/js/add-listeners.js"></script>
-	<!-- <script src="assets/table-sort.js"></script> -->
 
-	<!-- <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-	 crossorigin="anonymous"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-	 crossorigin="anonymous"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-	 crossorigin="anonymous"></script> -->
+	<script src="assets/js/add-listeners.js"></script>
+	<script src="assets/js/main.js"></script>
+
 
 </body>
 
