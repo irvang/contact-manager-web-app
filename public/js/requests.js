@@ -29,7 +29,7 @@ function postFetch(evt) {
 			res.text().then(text => {
 				responseDisplay.innerHTML = text;
 			});
-		});
+		}); 
 
 		// getFetch();//reload table
 };
