@@ -55,6 +55,7 @@ function sortTable(n) {
 				}
 			}
 		}
+		arrowDirection(dir, n);
 	}
 }
 
@@ -94,7 +95,7 @@ function sortTableDate(n) {
 						break;
 					}
 				} else if (dir == "desc") {
-					if (x< y) {
+					if (x < y) {
 						// If so, mark as a switch and break the loop:
 						shouldSwitch = true;
 						break;
@@ -117,5 +118,25 @@ function sortTableDate(n) {
 				}
 			}
 		}
+		arrowDirection(dir, n);
 	}
 }
+
+function arrowDirection(dir, n) {
+	//select all spans
+	//the one that matches, its assigned the arrow and the direction changed
+	//the rest, have its value set &nbsp;
+
+	//set to ascending or descending arrow
+	let arrowDir = dir === 'asc' ? '&#9650;' : '&#9660;';
+	
+	let allSpans = document.querySelectorAll('#contactsTable>thead span');
+
+	//n is the row number; i is the element that matches the row number
+	//span innerHTML will be set to ascending or descending arrow
+	allSpans.forEach(function (elm, i) {
+		i === n ? elm.innerHTML = arrowDir : elm.innerHTML = '&nbsp;';
+	});
+}
+
+// Arrows &#x25B2; &#x25BC; &#9650; &#9660;

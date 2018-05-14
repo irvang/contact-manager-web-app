@@ -29,7 +29,7 @@ function postFetch(evt) {
 			res.text().then(text => {
 				responseDisplay.innerHTML = text;
 			});
-		}); 
+		});
 
 	// getFetch();//reload table
 };
@@ -50,6 +50,9 @@ function getFetch() {
 			There are ${parsedJsonContactList.length} contacts on your list :)`;
 
 			createTableRows(parsedJsonContactList);
+
+			//sort table after creation
+			sortTable(0)();
 		});
 }
 
@@ -99,12 +102,17 @@ function createEditButton(tr, elm) {
 	btn.addEventListener('click', makeEditable);
 	editCell.appendChild(btn);
 
+	let trashbin = tr.cells[tr.cells.length - 1];
 	function makeEditable(evt) {
 		//this === button
 		this.textContent = 'Update';
 		this.removeEventListener('click', makeEditable);
 		this.addEventListener('click', updateContact);
 		tr.contentEditable = 'true';
+
+		//keep button, editcell, and trashbin uneditable
+		trashbin.contentEditable = 'false';
+		editCell.contentEditable = 'false';
 	}
 
 	function updateContact(evt) {
