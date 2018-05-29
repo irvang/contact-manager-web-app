@@ -2,7 +2,8 @@
 	Adapted from https://www.w3schools.com/howto/howto_js_sort_table.asp
 */
 function sortTable(n) {
-	return function () {
+	return function (evt) {
+		// console.log(evt.target);
 		var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
 		table = document.getElementById("contactsTable");
 		switching = true;

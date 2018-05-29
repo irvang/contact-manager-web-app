@@ -5,6 +5,7 @@ document.querySelector('#post-btn').addEventListener('click', postFetch);
 document.querySelector('#get').addEventListener('click', getFetch);
 
 document.querySelector('#search-input').addEventListener('keyup', filterByProperty);
+
 //table sorting
 document.querySelector('#th-firstName').addEventListener('click', sortTable(0));
 document.querySelector('#th-lastName').addEventListener('click', sortTable(1));

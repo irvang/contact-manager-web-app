@@ -9,14 +9,16 @@ const setupController = require('./controllers/setupController');
 //====MODELS
 
 //====PORT
-const port = process.env.PORT || 3000;
-
+const port = process.env.PORT || 3001;
+ 
 //====VIEW
 // app.set('view engine', 'ejs');
 // app.use('/', express.static('views'));//rendering static html
 
 //====STATIC FILES 
-app.use('/assets', express.static(__dirname + '/public'));
+// app.use('/assets', express.static(__dirname + '/public'));
+// app.use(express.static(__dirname + '/assets'));
+app.use(express.static('assets'));
 
 //====CONTROLLERS
 apiController(app);

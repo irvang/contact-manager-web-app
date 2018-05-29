@@ -21,7 +21,7 @@ let Contact = mongoose.model('Contact', contactSchema);
 class ContactClass {
 	constructor(name, lastname, phoneNumber, email, birthday, notes) {
 
-		//'Contact' is the schema mdoel
+		//'Contact' is the schema model
 		return new Contact({
 			firstName: name,
 			lastName: lastname,
@@ -37,6 +37,12 @@ module.exports = {
 	model: Contact,
 	creator: ContactClass
 }
+
+/* 
+	Same as:
+	module.exports.model = Contact;
+	module.exports.creator: ContactClass;
+*/
 
 
 /* 

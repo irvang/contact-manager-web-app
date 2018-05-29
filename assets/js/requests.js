@@ -1,39 +1,3 @@
-//====POST
-function postFetch(evt) {
-	evt.preventDefault();//prevents form submisison
-	const myObject = {};
-	const inputs = document.querySelectorAll('form#myForm input');
-	const responseDisplay = document.querySelector('#responseDisplay');
-
-	inputs.forEach(function (item) {
-		myObject[item.name] = item.value;
-	});
-
-	let fetchObj = fetch('/contact', {
-		method: 'POST', // or 'PUT'
-		body: JSON.stringify(myObject), // data can be `string` or {object}!
-		headers: new Headers({
-			'Content-Type': 'application/json'
-		})
-	});
-
-	let response = fetchObj.then(res => {
-		// console.log(res.statusText);
-		return res;
-	});
-
-	response.catch(error => {
-		console.error('Error:', error)
-	})
-		.then(res => {
-			res.text().then(text => {
-				responseDisplay.innerHTML = text;
-			});
-		});
-
-	// getFetch();//reload table
-};
-
 //====GET
 function getFetch() {
 
@@ -125,6 +89,42 @@ function createEditButton(tr, elm) {
 	}
 }
 
+//====POST
+function postFetch(evt) {
+	evt.preventDefault();//prevents form submisison
+	const myObject = {};
+	const inputs = document.querySelectorAll('form#myForm input');
+	const responseDisplay = document.querySelector('#responseDisplay');
+
+	inputs.forEach(function (item) {
+		myObject[item.name] = item.value;
+	});
+
+	let fetchObj = fetch('/contact', {
+		method: 'POST', // or 'PUT'
+		body: JSON.stringify(myObject), // data can be `string` or {object}!
+		headers: new Headers({
+			'Content-Type': 'application/json'
+		})
+	});
+
+	let response = fetchObj.then(res => {
+		// console.log(res.statusText);
+		return res;
+	});
+
+	response.catch(error => {
+		console.error('Error:', error)
+	})
+		.then(res => {
+			res.text().then(text => {
+				responseDisplay.innerHTML = text;
+			});
+		});
+
+	// getFetch();//reload table
+}
+
 //====PUT
 function putFetch(tr, id) {
 	const responseDisplay = document.querySelector('#responseDisplay');
@@ -161,7 +161,7 @@ function putFetch(tr, id) {
 function deleteContactFetch(_id) {
 
 	let confirmation = confirm('Are you sure you want to delete this contact?');
-	let bodyId = JSON.stringify({ id: _id });
+	let bodyId = JSON.stringify({ id: _id });// {"id": ""}
 	if (confirmation) {
 		// let _id = parseInt(evt.target.dataset.id);
 
