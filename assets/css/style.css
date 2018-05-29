@@ -1,73 +1,9 @@
-* {
-	box-sizing: border-box;
-	padding: 0;
-	margin: 0;
-	font-family: 'Courier New', Courier, monospace;
-	font-size: 14px;
+html, body {
+	font-size: 12px;
 }
 
-fieldset {
-	border-radius: 10px;
-	width: 90%;
-	margin: 0 auto;
-	padding: 5px 10px;
-
-	/* display: flex; */
-	/* flex-flow: row nowrap ; */
-	/* justify-content: center; */
-	/* flex: auto; */
-	align-items: center;
-	align-content: center;
-
-}
-
-legend {
-	text-align: center;
-}
-
-fieldset label {
-	display: inline-block;
-	margin: 5px;
-	margin-right: 20px;
-	width: 150px;
-}
-
-#post-btn {
-	background-color: lightblue;
-	/* color: white;	 */
-	font-weight: 700;
-	padding: 3px;
-}
-
-/*====TABLE - Border and border-collapse */
-table, th, td {
-	border: 1px solid blue;
-	border-collapse: collapse;
-}
-
-table {
-	width: 97%;
-	margin: 0 auto;
-}
-
-
-th, td {
-	padding: 3px 3px;
-	text-align: center;
+.nowrap {
 	white-space: nowrap;
-	overflow: hidden;
-	height: 2rem;
-}
-
-/* Text wraps and is a little smaller */
-.largeCell {
-	white-space: normal;
-	font-size: 0.8rem;
-}
-
-#responseDisplay {
-	width: 97%;
-	margin: 0 auto;
 }
 
 td.trashIcon {
@@ -78,7 +14,16 @@ td.trashIcon {
 	width: 20px;
 }
 
-.editButton {
-	background-color: lightseagreen;
-	color: white;
+.trashIcon:hover{
+	background-color: red;
 }
+
+/* tbody>tr:hover {
+	background-color: lightyellow;
+} */
+
+.note-overflow {
+	height: 10px;
+	overflow-y: auto;
+}
+

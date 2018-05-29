@@ -25,16 +25,18 @@ function createTableRows(contactList) {
 	const tableBody = document.querySelector('#contactsTable > tbody');
 	tableBody.innerHTML = '';
 
-	contactList.forEach((elm) => {
+	contactList.forEach((elm, idx) => {
 		const tr = document.createElement('tr');
+		
+		// idx % 2 === 0 ? tr.classList.add ('table-primary') : tr.classList.add ('table-info');
 
 		tr.innerHTML = `
 			<td itemprop='firstName'>${elm.firstName}</td>
 			<td itemprop='lastName'>${elm.lastName}</td> 
-			<td itemprop='phoneNumber'>${elm.phoneNumber}</td>
+			<td itemprop='phoneNumber' class='nowrap'>${elm.phoneNumber}</td>
 			<td itemprop='email'>${elm.email}</td>
-			<td itemprop='birthday'>${elm.birthday}</td> 
-			<td itemprop='notes' class='largeCell'>${elm.notes}</td>
+			<td itemprop='birthday' class='nowrap'>${elm.birthday}</td> 
+			<td itemprop='notes' class='note-overflow largeCell '>${elm.notes}</td>
 		`;
 
 		//id added to row and to button
@@ -62,8 +64,9 @@ function createEditButton(tr, elm) {
 	const btn = document.createElement('button');
 	btn.dataset.id = elm._id;
 	btn.textContent = 'Edit';
-	btn.classList.add('editButton');
+	btn.classList.add('editButton', 'btn', 'btn-primary');
 	btn.addEventListener('click', makeEditable);
+	btn.style.minWidth = '6rem';//set fixed width to avoid adjusting behavior
 	editCell.appendChild(btn);
 
 	let trashbin = tr.cells[tr.cells.length - 1];
@@ -83,7 +86,7 @@ function createEditButton(tr, elm) {
 		putFetch(tr, this.dataset.id);
 		tr.contentEditable = 'false';
 		//this === button
-		this.textContent = 'Edit';
+		this.textContent = ' Edit ';
 		this.removeEventListener('click', updateContact);
 		this.addEventListener('click', makeEditable);
 	}
