@@ -1,4 +1,5 @@
 //====GET
+let globalContactList = [];
 function getFetch() {
 
 	// see MDN's fetch() for options object passed as second parameter
@@ -13,104 +14,13 @@ function getFetch() {
 			document.querySelector('#responseDisplay').innerHTML = `
 			There are ${parsedJsonContactList.length} contacts on your list :)`;
 
-			createTableRows(parsedJsonContactList);
+			// createTableRows(parsedJsonContactList);
 
-			//sort table after creation
-			sortTable(0)();
+			// //sort table after creation
+			// sortTable(0)();
+ 			globalContactList = parsedJsonContactList;
+			sortTableArray('firstName', 0)()//IIFE because of closure
 		});
-}
-
-//---------------------------
-function createTableRows(contactList) {
-	const tableBody = document.querySelector('#contactsTable > tbody');
-	tableBody.innerHTML = '';
-
-	contactList.forEach((elm, idx) => {
-		const tr = document.createElement('tr');
-		
-		// idx % 2 === 0 ? tr.classList.add ('table-primary') : tr.classList.add ('table-info');
-
-		tr.innerHTML = `
-			<td itemprop='firstName'>${elm.firstName}</td>
-			<td itemprop='lastName'>${elm.lastName}</td> 
-			<td itemprop='phoneNumber' class='nowrap'>${elm.phoneNumber}</td>
-			<td itemprop='email'>${elm.email}</td>
-			<td itemprop='birthday' class='nowrap'>${elm.birthday}</td> 
-			<td itemprop='notes' class='note-overflow largeCell '>${elm.notes}</td>
-		`;
-
-		//id added to row and to button
-		createEditButton(tr, elm);
-
-		//create TRASHBIN
-		const trashBin = tr.insertCell();
-		trashBin.classList.add('trashIcon'	);
-		trashBin.dataset.id = elm._id;
-		trashBin.addEventListener('click', function (evt) {
-			deleteContactFetch(evt.target.dataset.id)
-		});
-
-		tableBody.appendChild(tr);
-	});
-}
-
-/* 
-Creates edit button and adds listeners. 
-Toggles button's textContent, contenteditable, and listener functions
-*/
-function createEditButton(tr, elm) {
-	//create BUTTON
-	const editCell = tr.insertCell();
-	const btn = document.createElement('button');
-	btn.dataset.id = elm._id;
-	btn.textContent = 'Edit';
-	btn.classList.add('editButton', 'btn', 'btn-primary');
-	btn.addEventListener('click', editContact());
-	btn.style.minWidth = '6rem';//set fixed width to avoid adjusting behavior
-	editCell.appendChild(btn);
-
-	let trashbin = tr.cells[tr.cells.length - 1];
-
-	function editContact() {
-		edit_on = false;
-		return function () {
-			edit_on = !edit_on;
-
-			this.textContent = edit_on ? 'Update': 'Edit';
-			this.classList.toggle('btn-primary');
-			this.classList.toggle('btn-success');
-
-			tr.contentEditable = edit_on;
-			tr.classList.toggle('textEditable');
-
-			trashbin.contentEditable = 'false';
-			editCell.contentEditable = 'false';
-
-			if(!edit_on) putFetch(tr, this.dataset.id);;
-		}
-	}
-
-	// function makeEditable(evt) {//on
-	// 	//this === button
-	// 	this.textContent = 'Update';
-	// 	this.removeEventListener('click', makeEditable);
-	// 	this.addEventListener('click', updateContact);
-	// 	tr.contentEditable = 'true';
-
-	// 	//keep button, editcell, and trashbin uneditable
-	// 	trashbin.contentEditable = 'false';
-	// 	editCell.contentEditable = 'false';
-	// }
-
-	// function updateContact(evt) {
-	// 	putFetch(tr, this.dataset.id);
-	// 	tr.contentEditable = 'false';
-	// 	//this === button
-	// 	this.textContent = ' Edit ';
-	// 	this.removeEventListener('click', updateContact);
-	// 	this.addEventListener('click', makeEditable);
-	// }
-
 }
 
 //====POST
