@@ -1,5 +1,5 @@
 html, body {
-	font-size: 12px;
+	font-size: 14px;
 }
 
 .nowrap {
@@ -27,3 +27,6 @@ td.trashIcon {
 	overflow-y: auto;
 }
 
+.textEditable {
+	background-color: lightgoldenrodyellow;
+}

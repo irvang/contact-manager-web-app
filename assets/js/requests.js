@@ -44,7 +44,7 @@ function createTableRows(contactList) {
 
 		//create TRASHBIN
 		const trashBin = tr.insertCell();
-		trashBin.classList.add('trashIcon');
+		trashBin.classList.add('trashIcon'	);
 		trashBin.dataset.id = elm._id;
 		trashBin.addEventListener('click', function (evt) {
 			deleteContactFetch(evt.target.dataset.id)
@@ -65,31 +65,52 @@ function createEditButton(tr, elm) {
 	btn.dataset.id = elm._id;
 	btn.textContent = 'Edit';
 	btn.classList.add('editButton', 'btn', 'btn-primary');
-	btn.addEventListener('click', makeEditable);
+	btn.addEventListener('click', editContact());
 	btn.style.minWidth = '6rem';//set fixed width to avoid adjusting behavior
 	editCell.appendChild(btn);
 
 	let trashbin = tr.cells[tr.cells.length - 1];
-	function makeEditable(evt) {
-		//this === button
-		this.textContent = 'Update';
-		this.removeEventListener('click', makeEditable);
-		this.addEventListener('click', updateContact);
-		tr.contentEditable = 'true';
 
-		//keep button, editcell, and trashbin uneditable
-		trashbin.contentEditable = 'false';
-		editCell.contentEditable = 'false';
+	function editContact() {
+		edit_on = false;
+		return function () {
+			edit_on = !edit_on;
+
+			this.textContent = edit_on ? 'Update': 'Edit';
+			this.classList.toggle('btn-primary');
+			this.classList.toggle('btn-success');
+
+			tr.contentEditable = edit_on;
+			tr.classList.toggle('textEditable');
+
+			trashbin.contentEditable = 'false';
+			editCell.contentEditable = 'false';
+
+			if(!edit_on) putFetch(tr, this.dataset.id);;
+		}
 	}
 
-	function updateContact(evt) {
-		putFetch(tr, this.dataset.id);
-		tr.contentEditable = 'false';
-		//this === button
-		this.textContent = ' Edit ';
-		this.removeEventListener('click', updateContact);
-		this.addEventListener('click', makeEditable);
-	}
+	// function makeEditable(evt) {//on
+	// 	//this === button
+	// 	this.textContent = 'Update';
+	// 	this.removeEventListener('click', makeEditable);
+	// 	this.addEventListener('click', updateContact);
+	// 	tr.contentEditable = 'true';
+
+	// 	//keep button, editcell, and trashbin uneditable
+	// 	trashbin.contentEditable = 'false';
+	// 	editCell.contentEditable = 'false';
+	// }
+
+	// function updateContact(evt) {
+	// 	putFetch(tr, this.dataset.id);
+	// 	tr.contentEditable = 'false';
+	// 	//this === button
+	// 	this.textContent = ' Edit ';
+	// 	this.removeEventListener('click', updateContact);
+	// 	this.addEventListener('click', makeEditable);
+	// }
+
 }
 
 //====POST
