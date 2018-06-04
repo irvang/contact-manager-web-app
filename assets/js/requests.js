@@ -18,7 +18,8 @@ function getFetch() {
 
 			// //sort table after creation
 			// sortTable(0)();
- 			globalContactList = parsedJsonContactList;
+			 globalContactList = parsedJsonContactList;
+			 global.sortDirection = -1;
 			sortTableArray('firstName', 0)()//IIFE because of closure
 		});
 }
