@@ -5,7 +5,9 @@ let sortTableArray = (function () {
 	sortOb.checkRepeat = '';
 	sortOb.sortDirection = -1;
 
-	return function (prop, n) {
+	return function (prop, n, dir) {
+		/* dir only used in getFetch(), to ensure ascending order on every invocation */
+		if (dir) sortOb.sortDirection = -1;
 
 		return function () {
 			// console.log(this)
@@ -16,17 +18,6 @@ let sortTableArray = (function () {
 		}
 	}
 })();
-
-// console.log(sortTableArray);
-// //---------------------------
-// function sortTableArray2(prop, n) {
-// 	return function () {
-// 		let tbody = document.querySelector('#contactsTable>tbody');
-
-// 		let sortedContactList = globalContactList.sort(sortString(prop, n));
-// 		createTableRows(sortedContactList);
-// 	}
-// }
 
 //---------------------------
 function sortString(prop, n, sortOb) {
