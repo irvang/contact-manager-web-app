@@ -28,6 +28,7 @@ module.exports = function (app) {
 	}); 
 
 	//====POST - post new contact to database
+	//contacts/
 	app.post('/contact', (req, res, next) => {
 		//deconstruncting for cleaner code
 		const { firstName, lastName, phoneNumber, email, birthday, notes } = req.body;
@@ -49,6 +50,7 @@ module.exports = function (app) {
 	});
 
 	//====PUT - change a contact by its id
+	//contacts/:id
 	app.put('/update-contact', (req, res, next) => {
 		const { firstName, lastName, phoneNumber, email, birthday, notes, id } = req.body;
 		if (id) {
@@ -73,6 +75,7 @@ module.exports = function (app) {
 	});
 
 	//====DELETE - delete a contact by its id?
+	// /contacts/:id
 	app.delete('/contact', (req, res, next) => {
 		console.log('in DELETE', req.body);
 

@@ -1,33 +1,50 @@
-function sortTableArray(prop, n) {
-	return function () {
-		let tbody = document.querySelector('#contactsTable>tbody');
+/* Double closure. Outer closure is an IIFE holds a state for different 
+listeners. Inner closure passes the specific variables for each listener. */
+let sortTableArray = (function () {
+	let sortOb = {};
+	sortOb.checkRepeat = '';
+	sortOb.sortDirection = -1;
 
-		let sortedContactList = globalContactList.sort(sortString(prop, n));
-		createTableRows(sortedContactList);
+	return function (prop, n) {
+
+		return function () {
+			// console.log(this)
+			let tbody = document.querySelector('#contactsTable>tbody');
+
+			let sortedContactList = globalContactList.sort(sortString(prop, n, sortOb));
+			createTableRows(sortedContactList);
+		}
 	}
-}
+})();
 
-//global so that they can hold a state
-let global = {};
-global.checkRepeat = '';
-global.sortDirection = -1;
+// console.log(sortTableArray);
+// //---------------------------
+// function sortTableArray2(prop, n) {
+// 	return function () {
+// 		let tbody = document.querySelector('#contactsTable>tbody');
 
-function sortString(prop, n) {
+// 		let sortedContactList = globalContactList.sort(sortString(prop, n));
+// 		createTableRows(sortedContactList);
+// 	}
+// }
 
+//---------------------------
+function sortString(prop, n, sortOb) {
 	/* if repeating property, invert sortDirection; if not, 
 	set to 1 so that order is ascending */
-	global.sortDirection = global.checkRepeat === prop ? -global.sortDirection : 1;
-	global.checkRepeat = prop;
+	sortOb.sortDirection = sortOb.checkRepeat === prop ? -sortOb.sortDirection : 1;
+	sortOb.checkRepeat = prop;
 
-	arrowDirection2(global.sortDirection, n);
+	arrowDirection2(sortOb.sortDirection, n);
 
 	return function (a, b) {
 		let aProp = a[prop].toUpperCase();
 		let bProp = b[prop].toUpperCase();
-		return aProp > bProp ? global.sortDirection : -global.sortDirection;
+		return aProp > bProp ? sortOb.sortDirection : -sortOb.sortDirection;
 	}
 }
 
+//---------------------------
 function arrowDirection2(dir, n) {
 	//select all spans
 	//the one that matches, its assigned the arrow and the direction changed
@@ -79,6 +96,7 @@ function createTableRows(contactList) {
 	});
 }
 
+//---------------------------
 /* 
 Creates edit button and adds listeners. 
 Toggles button's textContent, contenteditable, and listener functions
@@ -89,9 +107,9 @@ function createEditButton(tr, elm) {
 	const btn = document.createElement('button');
 	btn.dataset.id = elm._id;
 	btn.textContent = 'Edit';
-	btn.classList.add('editButton', 'btn', 'btn-primary');
+	btn.classList.add('editButton', 'btn', 'btn-outline-primary');
 	btn.addEventListener('click', editContact());
-	btn.style.minWidth = '6rem';//set fixed width to avoid adjusting behavior
+	// btn.style.minWidth = '6rem';//set fixed width to avoid adjusting behavior
 	editCell.appendChild(btn);
 
 	let trashbin = tr.cells[tr.cells.length - 1];
@@ -102,7 +120,7 @@ function createEditButton(tr, elm) {
 			edit_on = !edit_on;
 
 			this.textContent = edit_on ? 'Update' : 'Edit';
-			this.classList.toggle('btn-primary');
+			this.classList.toggle('btn-outline-primary');
 			this.classList.toggle('btn-success');
 
 			tr.contentEditable = edit_on;
@@ -111,7 +129,7 @@ function createEditButton(tr, elm) {
 			trashbin.contentEditable = 'false';
 			editCell.contentEditable = 'false';
 
-			if (!edit_on) putFetch(tr, this.dataset.id);;
+			if (!edit_on) putFetch(tr, this.dataset.id);
 		}
 	}
 }

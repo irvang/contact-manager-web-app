@@ -6,6 +6,10 @@ html, body {
 	white-space: nowrap;
 }
 
+.editButton {
+	min-width: 6rem;
+}
+
 td.trashIcon {
 	background-image: url("../img/trash-icon.png");
 	/* background-color: transparent; */
@@ -18,10 +22,6 @@ td.trashIcon {
 	background-color: red;
 }
 
-/* tbody>tr:hover {
-	background-color: lightyellow;
-} */
-
 .note-overflow {
 	height: 10px;
 	overflow-y: auto;
@@ -30,3 +30,4 @@ td.trashIcon {
 .textEditable {
 	background-color: lightgoldenrodyellow;
 }
+

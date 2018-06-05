@@ -17,8 +17,18 @@ document.querySelector('#search-input').addEventListener('keyup', filterByProper
 //array-table sorting
 document.querySelector('#th-firstName')
 	.addEventListener('click', sortTableArray('firstName', 0));
-document.querySelector('#th-lastName').addEventListener('click', sortTableArray('lastName', 1));
-document.querySelector('#th-phone').addEventListener('click', sortTableArray('phoneNumber', 2));
-document.querySelector('#th-email').addEventListener('click', sortTableArray('email', 3));
-document.querySelector('#th-dob').addEventListener('click', sortTableArray('birthday', 4));
-document.querySelector('#th-notes').addEventListener('click', sortTableArray('notes', 5));
+
+document.querySelector('#th-lastName')
+	.addEventListener('click', sortTableArray('lastName', 1));
+
+document.querySelector('#th-phone')
+	.addEventListener('click', sortTableArray('phoneNumber', 2));
+
+document.querySelector('#th-email')
+	.addEventListener('click', sortTableArray('email', 3));
+
+document.querySelector('#th-dob')
+	.addEventListener('click', sortTableArray('birthday', 4));
+
+document.querySelector('#th-notes')
+	.addEventListener('click', sortTableArray('notes', 5));
