@@ -20,17 +20,6 @@ const sortTableArray = (function () {
 	}
 })();
 
-/* 
-same as sortTableArray, but state is passed explicitly as an object literal.
-Ensures ascendint order: sortDirection is always -1, check repeat is always firstName. 
-See requests.js - getFetch().
-*/
-function sortTableArray2(prop, n) {
-	let tbody = document.querySelector('#contactsTable>tbody');
-	let sortedContactList = globalContactList.sort(sortString('firstName', 0, { sortDirection: -1, checkRepeat: 'firstName' }));
-	createTableRows(sortedContactList);
-}
-
 //---------------------------
 function sortString(prop, n, sortOb) {
 	/* if repeating property, invert sortDirection; if not, 
@@ -47,6 +36,20 @@ function sortString(prop, n, sortOb) {
 	}
 }
 
+function sortDate(prop, n, sortOb) {
+		/* if repeating property, invert sortDirection; if not, 
+	set to 1 so that order is ascending */
+	sortOb.sortDirection = sortOb.checkRepeat === prop ? -sortOb.sortDirection : 1;
+	sortOb.checkRepeat = prop;
+
+	arrowDirection2(sortOb.sortDirection, n);
+
+	return function (a, b) {
+		let aProp = a[prop].toUpperCase();
+		let bProp = b[prop].toUpperCase();
+		return aProp > bProp ? sortOb.sortDirection : -sortOb.sortDirection;
+	}
+}
 //---------------------------
 function arrowDirection2(dir, n) {
 	//select all spans
