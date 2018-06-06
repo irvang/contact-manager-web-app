@@ -77,7 +77,7 @@ module.exports = function (app) {
 	//====DELETE - delete a contact by its id?
 	// /contacts/:id
 	app.delete('/contact', (req, res, next) => {
-		console.log('in DELETE', req.body);
+		// console.log('in DELETE', req.body);
 
 		if (req.body.id) {
 			let q = Contact.model.findByIdAndRemove(req.body.id, function (err) {
