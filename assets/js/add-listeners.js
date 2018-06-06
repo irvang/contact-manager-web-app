@@ -14,7 +14,7 @@ document.querySelector('#search-input').addEventListener('keyup', filterByProper
 // document.querySelector('#th-dob').addEventListener('click', sortTableDate(4));
 // document.querySelector('#th-notes').addEventListener('click', sortTable(5));
 
-//array-table sorting
+/* //array-table sorting
 document.querySelector('#th-firstName')
 	.addEventListener('click', sortTableArray('firstName', 0));
 
@@ -31,4 +31,23 @@ document.querySelector('#th-dob')
 	.addEventListener('click', sortTableArray('birthday', 4));
 
 document.querySelector('#th-notes')
-	.addEventListener('click', sortTableArray('notes', 5));
+	.addEventListener('click', sortTableArray('notes', 5)); */
+
+//array-table sorting
+document.querySelector('#th-firstName')
+	.addEventListener('click', sortTableArray);
+
+document.querySelector('#th-lastName')
+	.addEventListener('click', sortTableArray);
+
+document.querySelector('#th-phone')
+	.addEventListener('click', sortTableArray);
+
+document.querySelector('#th-email')
+	.addEventListener('click', sortTableArray);
+
+document.querySelector('#th-dob')
+	.addEventListener('click', sortTableArray);
+
+document.querySelector('#th-notes')
+	.addEventListener('click', sortTableArray);

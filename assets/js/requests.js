@@ -21,7 +21,7 @@ function getFetch() {
 			globalContactList = parsedJsonContactList;//global to access in sortTableArray()
 			// console.log('equals?', global.contactList === parsedJsonContactList);
 			// global.sortDirection = -1;
-			sortTableArray('firstName', 0, true)()//IIFE because of closure
+			sortTableArray2();//values for this function are fixed
 		});
 }
 

@@ -1,23 +1,28 @@
-/* Double closure. Outer closure is an IIFE holds a state for different 
-listeners. Inner closure passes the specific variables for each listener. */
+/* Using closure to keep a state. sortOb will keep memory of state */
 let sortTableArray = (function () {
 	let sortOb = {};
 	sortOb.checkRepeat = '';
 	sortOb.sortDirection = -1;
 
-	return function (prop, n, dir) {
-		/* dir only used in getFetch(), to ensure ascending order on every invocation */
-		if (dir) sortOb.sortDirection = -1;
-
-		return function () {
-			// console.log(this)
-			let tbody = document.querySelector('#contactsTable>tbody');
-
-			let sortedContactList = globalContactList.sort(sortString(prop, n, sortOb));
-			createTableRows(sortedContactList);
-		}
+	return function () {
+		let prop = this.dataset.name;
+		let n = parseInt(this.dataset.cellIndex);
+		let tbody = document.querySelector('#contactsTable>tbody');
+		let sortedContactList = globalContactList.sort(sortString(prop, n, sortOb));
+		createTableRows(sortedContactList);
 	}
 })();
+
+/* 
+same as sortTableArray, but state is passed explicitly as an object literal.
+Ensures ascendint order: sortDirection is always -1, check repeat is always firstName. 
+See requests.js - getFetch().
+*/
+function sortTableArray2(prop, n) {
+	let tbody = document.querySelector('#contactsTable>tbody');
+	let sortedContactList = globalContactList.sort(sortString('firstName', 0, { sortDirection: -1, checkRepeat: 'firstName' }));
+	createTableRows(sortedContactList);
+}
 
 //---------------------------
 function sortString(prop, n, sortOb) {
