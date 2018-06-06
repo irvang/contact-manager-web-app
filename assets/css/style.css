@@ -1,8 +1,26 @@
 body {
 	font-size: 14px;
-	width: 98%;
+	width: 97%;
 	margin: 0 auto;
+	/* background-color: cornsilk; */
+	/* background-color: snow; */
+	background-color: whitesmoke;
 }
+
+form, div.table-responsive, .input-group{
+	padding: 5px;
+	background-color: cornsilk;
+	/* background-color: snow; */
+	/* background-color: whitesmoke; */
+}
+div.get-btn-parent {
+	background-color: cornsilk;
+}
+/* div.table-responsive {
+	background-color: cornsilk;
+	/* background-color: snow; */
+	/* background-color: whitesmoke; */
+} */
 
 .nowrap {
 	white-space: nowrap;
@@ -20,7 +38,7 @@ td.trashIcon {
 	width: 20px;
 }
 
-.trashIcon:hover{
+.trashIcon:hover {
 	background-color: red;
 }
 
@@ -32,4 +50,3 @@ td.trashIcon {
 .textEditable {
 	background-color: lightgoldenrodyellow;
 }
-
