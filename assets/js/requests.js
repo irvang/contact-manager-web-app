@@ -5,23 +5,20 @@ function getFetch() {
 	// see MDN's fetch() for options object passed as second parameter
 	fetch('/contacts')
 		.then(function (responseContactList) {
-			// response is the list in JSON, response.json() parses it
-			//body.json() 
+			/* response is the list in JSON, response.json() parses it
+			body.json() */
 			return responseContactList.json();
 
 		})
 		.then(function (parsedJsonContactList) {
+			
 			document.querySelector('#responseDisplay').innerHTML = `
 			There are ${parsedJsonContactList.length} contacts on your list :)`;
-
-			// createTableRows(parsedJsonContactList);
-
-			// //sort table after creation
-			// sortTable(0)();
+			
 			globalContactList = parsedJsonContactList;//global to access in sortTableArray()
-			// console.log('equals?', global.contactList === parsedJsonContactList);
-			// global.sortDirection = -1;
-			sortTableArray2();//values for this function are fixed
+
+			// invoke the function and invoke its return
+			sortTableArray(true)();//values are fixed - could have used 'firstName'
 		});
 }
 

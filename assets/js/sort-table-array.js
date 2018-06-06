@@ -1,15 +1,22 @@
-/* Using closure to keep a state. sortOb will keep memory of state */
-let sortTableArray = (function () {
-	let sortOb = {};
+/* Using closure to keep a state. sortOb will keep memory of state
+Using double closure to allow overloading and using function passing values */
+
+const sortTableArray = (function () {
+	const sortOb = {};
 	sortOb.checkRepeat = '';
 	sortOb.sortDirection = -1;
+	return function (passedProp) {
+		sortOb.sortDirection = -1;
 
-	return function () {
-		let prop = this.dataset.name;
-		let n = parseInt(this.dataset.cellIndex);
-		let tbody = document.querySelector('#contactsTable>tbody');
-		let sortedContactList = globalContactList.sort(sortString(prop, n, sortOb));
-		createTableRows(sortedContactList);
+		return function () {
+
+			let prop = passedProp ? 'firstName' : this.dataset.name;
+			let n = passedProp ? 0 : parseInt(this.dataset.cellIndex);
+
+			let tbody = document.querySelector('#contactsTable>tbody');
+			let sortedContactList = globalContactList.sort(sortString(prop, n, sortOb));
+			createTableRows(sortedContactList);
+		}
 	}
 })();
 
