@@ -60,19 +60,34 @@
 
 	<br>
 
-	<button id="get" class="btn btn-primary">Get all contacts</button>
+	<div>
+		<button id="get" class="btn btn-primary">Get all contacts</button>
+	</div>
 	<br>
 
 	<!-- SEARCH INPUT - sr-only = screen reader only-->
-	<label for="search-input" class="sr-only">Search by: </label>
-	<input type="text" id="search-input" placeholder="Search by:" title="Type in a name">
 
-	<select id='propToFilter' name="options">
-		<option value="0" data-val='0'>Name</option>
-		<option value="1" data-val='1'>Last Name</option>
-		<option value="2">Phone Number</option>
-		<option value="3">Email</option>
-	</select>
+	<div class="input-group">
+
+		<div class="input-group-prepend">
+			<span class="input-group-text mr-0" id="">Search by </span>
+		</div>
+		<div class="col-2">
+			<select id='propToFilter' name="options" class="custom-select mr-sm-2 ">
+				<option value="0" data-val='0'>Name</option>
+				<option value="1" data-val='1'>Last Name</option>
+				<option value="2">Phone Number</option>
+				<option value="3">Email</option>
+			</select>
+		</div>
+
+
+		<label for="search-input" class="sr-only">Search by: </label>
+		<input type="text" id="search-input" placeholder="search" title="Type in a name">
+	</div>
+
+
+
 
 	<br>
 	<br>
