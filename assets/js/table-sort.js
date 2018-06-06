@@ -56,7 +56,7 @@ function sortTable(n) {
 				}
 			}
 		}
-		arrowDirection(dir, n);
+		arrowDirection2(dir, n);
 	}
 }
 
@@ -119,11 +119,11 @@ function sortTableDate(n) {
 				}
 			}
 		}
-		arrowDirection(dir, n);
+		arrowDirection2(dir, n);
 	}
 }
 
-function arrowDirection(dir, n) {
+function arrowDirection2(dir, n) {
 	//select all spans
 	//the one that matches, its assigned the arrow and the direction changed
 	//the rest, have its value set &nbsp;

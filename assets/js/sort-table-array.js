@@ -14,7 +14,13 @@ const sortTableArray = (function () {
 			let n = passedProp ? 0 : parseInt(this.dataset.cellIndex);
 
 			let tbody = document.querySelector('#contactsTable>tbody');
-			let sortedContactList = globalContactList.sort(sortString(prop, n, sortOb));
+			let sortedContactList = [];
+			if (prop === 'birthday') {
+				sortedContactList = globalContactList.sort(sortDate(prop, n, sortOb));
+			} else {
+				sortedContactList = globalContactList.sort(sortString(prop, n, sortOb));
+			}
+
 			createTableRows(sortedContactList);
 		}
 	}
@@ -27,7 +33,7 @@ function sortString(prop, n, sortOb) {
 	sortOb.sortDirection = sortOb.checkRepeat === prop ? -sortOb.sortDirection : 1;
 	sortOb.checkRepeat = prop;
 
-	arrowDirection2(sortOb.sortDirection, n);
+	arrowDirection(sortOb.sortDirection, n);
 
 	return function (a, b) {
 		let aProp = a[prop].toUpperCase();
@@ -37,21 +43,21 @@ function sortString(prop, n, sortOb) {
 }
 
 function sortDate(prop, n, sortOb) {
-		/* if repeating property, invert sortDirection; if not, 
-	set to 1 so that order is ascending */
+	/* if repeating property, invert sortDirection; if not, 
+set to 1 so that order is ascending */
 	sortOb.sortDirection = sortOb.checkRepeat === prop ? -sortOb.sortDirection : 1;
 	sortOb.checkRepeat = prop;
 
-	arrowDirection2(sortOb.sortDirection, n);
+	arrowDirection(sortOb.sortDirection, n);
 
 	return function (a, b) {
-		let aProp = a[prop].toUpperCase();
-		let bProp = b[prop].toUpperCase();
-		return aProp > bProp ? sortOb.sortDirection : -sortOb.sortDirection;
+		let aProp = new Date(a[prop]);
+		let bProp = new Date(b[prop]);
+		return aProp > bProp ? -sortOb.sortDirection : sortOb.sortDirection;
 	}
 }
 //---------------------------
-function arrowDirection2(dir, n) {
+function arrowDirection(dir, n) {
 	//select all spans
 	//the one that matches, its assigned the arrow and the direction changed
 	//the rest, have its value set &nbsp;
