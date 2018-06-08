@@ -31,15 +31,16 @@ form, div.table-responsive, .input-group, div.get-btn-parent{
 	/* background-color: whitesmoke; */
 }
 
+tbody>tr:nth-child(odd) {
+	background-color: #ffe5c7;
+}
+
 tbody>tr:nth-child(even) {
 	background-color: #fff3e8;
 }
 
-tbody>tr:nth-child(odd) {
-	background-color: #f2e2d0;
-}
 tbody>tr:hover {
-	background-color: #dfdffa;
+	background-color: #feffac;
 }
 
 .nowrap {
