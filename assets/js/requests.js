@@ -1,5 +1,6 @@
 //====GET
 let globalContactList = [];
+
 function getFetch() {
 
 	// see MDN's fetch() for options object passed as second parameter
@@ -11,14 +12,15 @@ function getFetch() {
 
 		})
 		.then(function (parsedJsonContactList) {
-			
+
 			document.querySelector('#responseDisplay').innerHTML = `
 			There are ${parsedJsonContactList.length} contacts on your list :)`;
-			
+
 			globalContactList = parsedJsonContactList;//global to access in sortTableArray()
 
 			// invoke the function and invoke its return
-			sortTableArray(true)();//values are fixed - could have used 'firstName'
+			// sortTableArray(true)();//values are fixed - could have used 'firstName'
+			boundSortTableArray();
 		});
 }
 

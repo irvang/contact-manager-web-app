@@ -8,19 +8,19 @@ document.querySelector('#search-input').addEventListener('keyup', filterByProper
 
 //array-table sorting
 document.querySelector('#th-firstName')
-	.addEventListener('click', sortTableArray());
+	.addEventListener('click', sortTableArray);
 
 document.querySelector('#th-lastName')
-	.addEventListener('click', sortTableArray());
+	.addEventListener('click', sortTableArray);
 
 document.querySelector('#th-phone')
-	.addEventListener('click', sortTableArray());
+	.addEventListener('click', sortTableArray);
 
 document.querySelector('#th-email')
-	.addEventListener('click', sortTableArray());
+	.addEventListener('click', sortTableArray);
 
 document.querySelector('#th-dob')
-	.addEventListener('click', sortTableArray());
+	.addEventListener('click', sortTableArray);
 
 document.querySelector('#th-notes')
-	.addEventListener('click', sortTableArray());
+	.addEventListener('click', sortTableArray);

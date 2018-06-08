@@ -5,26 +5,29 @@ const sortTableArray = (function () {
 	const sortOb = {};
 	sortOb.checkRepeat = '';
 	sortOb.sortDirection = -1;
-	return function (passedProp) {
-		sortOb.sortDirection = -1;
 
-		return function () {
+	return function () {
 
-			let prop = passedProp ? 'firstName' : this.dataset.name;
-			let n = passedProp ? 0 : parseInt(this.dataset.cellIndex);
+		//if there is a flag property passed, start in ascending order
+		if (this.flag) sortOb.sortDirection = -1;
 
-			let tbody = document.querySelector('#contactsTable>tbody');
-			let sortedContactList = [];
-			if (prop === 'birthday') {
-				sortedContactList = globalContactList.sort(sortDate(prop, n, sortOb));
-			} else {
-				sortedContactList = globalContactList.sort(sortString(prop, n, sortOb));
-			}
+		let prop = this.dataset.name;
+		let n = parseInt(this.dataset.cellIndex);
 
-			createTableRows(sortedContactList);
+		let tbody = document.querySelector('#contactsTable>tbody');
+		let sortedContactList = [];
+		if (prop === 'birthday') {
+			sortedContactList = globalContactList.sort(sortDate(prop, n, sortOb));
+		} else {
+			sortedContactList = globalContactList.sort(sortString(prop, n, sortOb));
 		}
+
+		createTableRows(sortedContactList);
 	}
 })();
+
+//bind to fake dataset and cellIndex. Adds a flag to always sort in ascending order.
+let boundSortTableArray = sortTableArray.bind({ dataset: { name: 'firstName', cellIndex: 0 }, flag: true });
 
 //---------------------------
 function sortString(prop, n, sortOb) {
