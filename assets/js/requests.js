@@ -33,6 +33,7 @@ function postFetch(evt) {
 
 	inputs.forEach(function (item) {
 		myObject[item.name] = item.value;
+		item.value= ""
 	});
 
 	let fetchObj = fetch('/contact', {
@@ -53,7 +54,8 @@ function postFetch(evt) {
 	})
 		.then(res => {
 			res.text().then(text => {
-				responseDisplay.innerHTML = text;
+				responseDisplay.innerHTML = '&nbsp;';
+				document.querySelector('#myForm span').innerHTML = text;
 			});
 		});
 

@@ -42,8 +42,7 @@ module.exports = function (app) {
 		newContact.save((err) => {
 			if (err) throw err;
 			// res.send('successsss');
-			res.send(`Success! - contact added with post: 
-			\n\n <strong>${firstName} ${lastName} ${phoneNumber} ${bday} </strong>`);
+			res.send(` &nbsp;&nbsp; <strong>${firstName} ${lastName} </strong>added to contact list!`);
 		});
 
 		// console.log("at /contact -- body: ", req.body);
