@@ -4,23 +4,33 @@ body {
 	margin: 0 auto;
 	/* background-color: cornsilk; */
 	/* background-color: snow; */
-	background-color: whitesmoke;
+	/* background-color: whitesmoke; */
+	/* background-color:#b8b8b8; */
+	/* background: linear-gradient(to right, red, yellow, green); */
+	/* background: linear-gradient(to right, gainsboro, #fffff2, gainsboro); */
+	/* background: linear-gradient(to left, gainsboro, #fffff2); */
+
+	background: linear-gradient(to right, gainsboro, #fffff2);
+	
+
+
 }
 
-form, div.table-responsive, .input-group{
+form, div.table-responsive, .input-group, div.get-btn-parent{
 	padding: 5px;
-	background-color: cornsilk;
+	/* background-color: #e2e1e1; */
+	 /* background: linear-gradient(to right, #e2e1e1, burlywood); */
+	/* background:linear-gradient(to bottom right, #85ff78, #87d1de); */ 
+	/* background: linear-gradient(to bottom right, #c6d2ff, #a9dae3); */
+	/* background: linear-gradient(to bottom right, #c6d2ff, #313232); */
+	/* background: linear-gradient(to bottom right, #a4adcf, #7c8585); */
+	background: linear-gradient(to bottom right, #c6d2ff, #31323275);
+	/* background: linear-gradient(to bottom right, #e7ecff, #c4eef6); */
+
 	/* background-color: snow; */
 	/* background-color: whitesmoke; */
 }
-div.get-btn-parent {
-	background-color: cornsilk;
-}
-/* div.table-responsive {
-	background-color: cornsilk;
-	/* background-color: snow; */
-	/* background-color: whitesmoke; */
-} */
+
 
 .nowrap {
 	white-space: nowrap;
