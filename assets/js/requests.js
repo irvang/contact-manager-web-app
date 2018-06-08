@@ -33,7 +33,7 @@ function postFetch(evt) {
 
 	inputs.forEach(function (item) {
 		myObject[item.name] = item.value;
-		item.value= ""
+		item.value = ""
 	});
 
 	let fetchObj = fetch('/contact', {
@@ -59,7 +59,7 @@ function postFetch(evt) {
 			});
 		});
 
-	// getFetch();//reload table
+	getFetch();//reload table
 }
 
 //====PUT
@@ -115,10 +115,9 @@ function deleteContactFetch(_id) {
 			response.text().then(text => {
 				console.log('Delete response: ' + text);
 			})
+
+			//once contact has been deleted,fetch again contacts with new array
+			getFetch();
 		});
-
-		//fetch again contacts with new array
-		getFetch();
-
 	}
 }
