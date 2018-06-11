@@ -1,5 +1,5 @@
 body {
-	font-size: 14px;
+	font-size: 12px;
 	width: 97%;
 	margin: 0 auto;
 	/* background-color: cornsilk; */
@@ -9,26 +9,46 @@ body {
 	/* background: linear-gradient(to right, red, yellow, green); */
 	/* background: linear-gradient(to right, gainsboro, #fffff2, gainsboro); */
 	/* background: linear-gradient(to left, gainsboro, #fffff2); */
-
 	background: linear-gradient(to right, gainsboro, #fffff2);
-	
-
-
 }
 
-form, div.table-responsive, .input-group, div.get-btn-parent{
+/* details>form, */
+
+div.table-responsive, .input-group, div.get-btn-parent, details {
 	padding: 5px;
 	/* background-color: #e2e1e1; */
-	 /* background: linear-gradient(to right, #e2e1e1, burlywood); */
-	/* background:linear-gradient(to bottom right, #85ff78, #87d1de); */ 
+	/* background: linear-gradient(to right, #e2e1e1, burlywood); */
+	/* background:linear-gradient(to bottom right, #85ff78, #87d1de); */
 	/* background: linear-gradient(to bottom right, #c6d2ff, #a9dae3); */
 	/* background: linear-gradient(to bottom right, #c6d2ff, #313232); */
 	/* background: linear-gradient(to bottom right, #a4adcf, #7c8585); */
 	background: linear-gradient(to bottom right, #c6d2ff, #3132324d);
 	/* background: linear-gradient(to bottom right, #e7ecff, #c4eef6); */
-
 	/* background-color: snow; */
 	/* background-color: whitesmoke; */
+}
+
+details {
+	font-size: 1.1rem;
+	margin-top: 10px;
+	padding: 0 5px;
+}
+
+#myForm {
+	font-size: 0.9rem;
+}
+
+legend {
+	background: linear-gradient(to bottom right, #c6d2ff, #3132324d);
+}
+
+/* Overriding bootstrap class */
+.btn-sm {
+	font-size:0.7rem;
+}
+
+.input-group-sm {
+	font-size: 0.9rem;
 }
 
 tbody>tr:nth-child(odd) {
@@ -64,9 +84,14 @@ td.trashIcon {
 }
 
 .note-overflow {
-	height: 10px;
-	overflow-y: auto;
+	/* height: 0;
+	overflow-y: scroll; */
+	/* background-color: lightblue; */
 }
+
+/* tr>td:nth-child(6) {
+
+} */
 
 .textEditable {
 	background-color: lightgoldenrodyellow;

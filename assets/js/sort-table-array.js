@@ -9,7 +9,7 @@ const sortTableArray = (function () {
 	return function () {
 
 		//if there is a flag property passed, start in ascending order
-		if (this.flag) sortOb.sortDirection = -1;
+		if (this.startAscending) sortOb.sortDirection = -1;
 
 		let prop = this.dataset.name;
 		let n = parseInt(this.dataset.cellIndex);
@@ -27,7 +27,7 @@ const sortTableArray = (function () {
 })();
 
 //bind to fake dataset and cellIndex. Adds a flag to always sort in ascending order.
-let boundSortTableArray = sortTableArray.bind({ dataset: { name: 'firstName', cellIndex: 0 }, flag: true });
+// let boundSortTableArray = sortTableArray.bind({ dataset: { name: 'firstName', cellIndex: 0 }, flag: true });
 
 //---------------------------
 function sortString(prop, n, sortOb) {
@@ -93,7 +93,7 @@ function createTableRows(contactList) {
 			<td itemprop='phoneNumber' class='nowrap'>${elm.phoneNumber}</td>
 			<td itemprop='email'>${elm.email}</td>
 			<td itemprop='birthday' class='nowrap'>${elm.birthday}</td> 
-			<td itemprop='notes' class='note-overflow largeCell '>${elm.notes}</td>
+			<td itemprop='notes' class='note-overflow largeCell'>${elm.notes}</td>
 		`;
 
 		//id added to row and to button
@@ -122,7 +122,7 @@ function createEditButton(tr, elm) {
 	const btn = document.createElement('button');
 	btn.dataset.id = elm._id;
 	btn.textContent = 'Edit';
-	btn.classList.add('editButton', 'btn', 'btn-outline-primary');
+	btn.classList.add('editButton', 'btn', 'btn-outline-primary', 'btn-sm');
 	btn.addEventListener('click', editContact());
 	// btn.style.minWidth = '6rem';//set fixed width to avoid adjusting behavior
 	editCell.appendChild(btn);

@@ -10,6 +10,8 @@ function getFetch() {
 			body.json() */
 			return responseContactList.json();
 
+		}, err => {
+			console.log(err)
 		})
 		.then(function (parsedJsonContactList) {
 
@@ -18,9 +20,14 @@ function getFetch() {
 
 			globalContactList = parsedJsonContactList;//global to access in sortTableArray()
 
-			// invoke the function and invoke its return
-			// sortTableArray(true)();//values are fixed - could have used 'firstName'
-			boundSortTableArray();
+			//mimicking a dataset object in order to use same function as the listeners
+			sortTableArray.apply({
+				dataset: {
+					name: 'firstName',
+					cellIndex: 0
+				},
+				startAscending: true
+			});
 		});
 }
 
@@ -54,6 +61,7 @@ function postFetch(evt) {
 	})
 		.then(res => {
 			res.text().then(text => {
+				//clear inputs after response is received
 				responseDisplay.innerHTML = '&nbsp;';
 				document.querySelector('#myForm span').innerHTML = text;
 			});
