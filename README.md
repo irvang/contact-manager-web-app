@@ -1,4 +1,4 @@
-# Contact-Manager-API 
+# Contact-Manager-Web-App 
 ## A CRUD application for a contact manager.
 
 App deployed at https://contact-manager-irv.herokuapp.com.
