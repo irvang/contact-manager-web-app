@@ -1,7 +1,5 @@
 //====GET
-
 function getFetch() {
-
 	// see MDN's fetch() for options object passed as second parameter
 	fetch('/contacts')
 		.then(function (responseContactList) {
@@ -9,8 +7,6 @@ function getFetch() {
 			body.json() */
 			return responseContactList.json();
 
-		}, err => {
-			console.log(err)
 		})
 		.then(function (parsedJsonContactList) {
 
@@ -27,6 +23,9 @@ function getFetch() {
 				startAscending: true,
 				contactListPass: parsedJsonContactList
 			});
+		})
+		.catch(error => {
+			console.error('Error:', error)
 		});
 }
 
@@ -51,14 +50,12 @@ function postFetch(evt) {
 	}).then(res => {
 		// console.log(res.statusText);
 
-		res.text().then(text => {
+		return res.text().then(text => {
 			//clear inputs after response is received
 			responseDisplay.innerHTML = '&nbsp;';
 			document.querySelector('#myForm span').innerHTML = text;
 		});
-
 		getFetch();//reload table
-
 	}).catch(error => {
 		console.error('Error:', error)
 	});
@@ -109,14 +106,14 @@ function deleteContactFetch(_id) {
 				'Content-Type': 'application/json'
 			})
 		}).then(function (response) {
-				response.text().then(text => {
-					console.log('Delete response: ' + text);
-				});
-				//once contact has been deleted,fetch again contacts with new array
-				getFetch();
-
-			}).catch(error => {
-				console.error('Error:', error)
+			response.text().then(text => {
+				console.log('Delete response: ' + text);
 			});
+			//once contact has been deleted,fetch again contacts with new array
+			getFetch();
+
+		}).catch(error => {
+			console.error('Error:', error)
+		});
 	}
 }
