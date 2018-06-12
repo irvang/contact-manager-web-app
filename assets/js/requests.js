@@ -24,7 +24,7 @@ function getFetch() {
 					name: 'firstName',
 					cellIndex: 0
 				},
-				startAscending: true, 
+				startAscending: true,
 				contactListPass: parsedJsonContactList
 			});
 		});
@@ -48,25 +48,20 @@ function postFetch(evt) {
 		headers: new Headers({
 			'Content-Type': 'application/json'
 		})
-	});
-
-	let response = fetchObj.then(res => {
+	}).then(res => {
 		// console.log(res.statusText);
-		return res;
-	});
 
-	response.catch(error => {
-		console.error('Error:', error)
-	})
-		.then(res => {
-			res.text().then(text => {
-				//clear inputs after response is received
-				responseDisplay.innerHTML = '&nbsp;';
-				document.querySelector('#myForm span').innerHTML = text;
-			});
+		res.text().then(text => {
+			//clear inputs after response is received
+			responseDisplay.innerHTML = '&nbsp;';
+			document.querySelector('#myForm span').innerHTML = text;
 		});
 
-	getFetch();//reload table
+		getFetch();//reload table
+
+	}).catch(error => {
+		console.error('Error:', error)
+	});
 }
 
 //====PUT
@@ -91,13 +86,11 @@ function putFetch(tr, id) {
 			'Content-Type': 'application/json'
 		})
 	}).then(res => {
-		return res;// res.statusText;
-	}).catch(error => {
-		console.error('Error:', error)
-	}).then(res => {
 		res.text().then(text => {
 			responseDisplay.innerHTML = text;
 		});
+	}).catch(error => {
+		console.error('Error:', error)
 	});
 }
 
@@ -116,15 +109,14 @@ function deleteContactFetch(_id) {
 				'Content-Type': 'application/json'
 			})
 		}).then(function (response) {
-			// console.log(response);
-			return response;
-		}).then(function (response) {
-			response.text().then(text => {
-				console.log('Delete response: ' + text);
-			})
+				response.text().then(text => {
+					console.log('Delete response: ' + text);
+				});
+				//once contact has been deleted,fetch again contacts with new array
+				getFetch();
 
-			//once contact has been deleted,fetch again contacts with new array
-			getFetch();
-		});
+			}).catch(error => {
+				console.error('Error:', error)
+			});
 	}
 }
