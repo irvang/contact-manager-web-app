@@ -5,11 +5,14 @@ const sortTableArray = (function () {
 	const sortOb = {};
 	sortOb.checkRepeat = '';
 	sortOb.sortDirection = -1;
-
+	sortOb.contactList = [];
 	return function () {
 
 		//if there is a flag property passed, start in ascending order
-		if (this.startAscending) sortOb.sortDirection = -1;
+		if (this.startAscending) {
+			sortOb.contactList = this.contactListPass;
+			sortOb.sortDirection = -1
+		};
 
 		let prop = this.dataset.name;
 		let n = parseInt(this.dataset.cellIndex);
@@ -17,9 +20,9 @@ const sortTableArray = (function () {
 		let tbody = document.querySelector('#contactsTable>tbody');
 		let sortedContactList = [];
 		if (prop === 'birthday') {
-			sortedContactList = globalContactList.sort(sortDate(prop, n, sortOb));
+			sortedContactList = sortOb.contactList.sort(sortDate(prop, n, sortOb));
 		} else {
-			sortedContactList = globalContactList.sort(sortString(prop, n, sortOb));
+			sortedContactList = sortOb.contactList.sort(sortString(prop, n, sortOb));
 		}
 
 		createTableRows(sortedContactList);

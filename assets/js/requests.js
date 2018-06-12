@@ -1,5 +1,4 @@
 //====GET
-let globalContactList = [];
 
 function getFetch() {
 
@@ -18,15 +17,15 @@ function getFetch() {
 			document.querySelector('#responseDisplay').innerHTML = `
 			There are ${parsedJsonContactList.length} contacts on your list :)`;
 
-			globalContactList = parsedJsonContactList;//global to access in sortTableArray()
-
-			//mimicking a dataset object in order to use same function as the listeners
+			//Creates the table, and passes the contact list reference to the function
+			//mimicks a dataset object in order to use same function as the listeners
 			sortTableArray.apply({
 				dataset: {
 					name: 'firstName',
 					cellIndex: 0
 				},
-				startAscending: true
+				startAscending: true, 
+				contactListPass: parsedJsonContactList
 			});
 		});
 }
