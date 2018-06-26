@@ -41,21 +41,23 @@ function postFetch(evt) {
 		item.value = ""
 	});
 
-	let fetchObj = fetch('/contact', {
+	fetch('/contact', {
 		method: 'POST', // or 'PUT'
 		body: JSON.stringify(myObject), // data can be `string` or {object}!
 		headers: new Headers({
 			'Content-Type': 'application/json'
 		})
 	}).then(res => {
-		// console.log(res.statusText);
 
-		return res.text().then(text => {
-			//clear inputs after response is received
-			responseDisplay.innerHTML = '&nbsp;';
-			document.querySelector('#myForm span').innerHTML = text;
-		});
+		//	res.text() returns a promise
+		return res.text();
+
+	}).then(text => {
+		//clear inputs after response is received
+		responseDisplay.innerHTML = '&nbsp;';
+		document.querySelector('#myForm span').innerHTML = text;
 		getFetch();//reload table
+
 	}).catch(error => {
 		console.error('Error:', error)
 	});
@@ -83,9 +85,11 @@ function putFetch(tr, id) {
 			'Content-Type': 'application/json'
 		})
 	}).then(res => {
-		res.text().then(text => {
-			responseDisplay.innerHTML = text;
-		});
+
+		//	res.text() returns a promise
+		return res.text();
+	}).then(text => {
+		responseDisplay.innerHTML = text;
 	}).catch(error => {
 		console.error('Error:', error)
 	});
@@ -106,14 +110,18 @@ function deleteContactFetch(_id) {
 				'Content-Type': 'application/json'
 			})
 		}).then(function (response) {
-			response.text().then(text => {
-				console.log('Delete response: ' + text);
-			});
+
+			//	res.text() returns a promise
+			return response.text()
+
+		}).then(text => {
+
+			// console.log('Delete response: ' + text);
 			//once contact has been deleted,fetch again contacts with new array
 			getFetch();
-
-		}).catch(error => {
-			console.error('Error:', error)
-		});
+		})
+			.catch(error => {
+				console.error('Error:', error)
+			});
 	}
 }
