@@ -20,16 +20,11 @@ A contact manager applciation using Express and Mongoose for  the backend, vanil
 
 ## Built With
 
-- [React](https://reactjs.org/) - Front-end Library for User Interface
-- [Semantic UI React](https://react.semantic-ui.com) - Front-end Development Framework
-- [Redux](https://redux.js.org/) - Front-end State Management
-- [React-Router v3](https://github.com/ReactTraining/react-router/tree/v3/docs) - Front-end Routing Library
-- [Ruby on Rails](https://rubyonrails.org/)  - Back-end Server
-- [Bundler](https://bundler.io/) - Ruby Gem Package Management
-- [Yarn](https://yarnpkg.com/en/) - JS Package Management
-- [Heroku](https://www.heroku.com/) - Production Cloud Application Platform
-- [PostgreSQL](https://www.postgresql.org) - Database
-- [GitHub OAuth](https://developer.github.com/apps/building-oauth-apps/) - User Authentication Integration
+- [Node.js](https://nodejs.org/en/) - JavaScript runtime
+- [Express.js](https://expressjs.com/) - Web framework for Node.js
+- [Mongoose](https://mongoosejs.com/) - Object modeling for Node.js
+- [mLab](https://mlab.com/) - Database
+- [Bootstrap 4](https://getbootstrap.com/)  - Front-end design framework
 
 
 ## Acknowledgments
