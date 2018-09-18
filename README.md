@@ -13,13 +13,13 @@ A contact manager applciation using Express and Mongoose for  the backend, vanil
 [Node.js](https://nodejs.org/en/) is needed in order to run the application locally.
  
 ### Installation
-Clone or download the folder. 
+- Clone or download the folder. 
 
-Change to folder directory: `cd ~/contact-manager-web-app`
+- Change to folder directory: `cd ~/contact-manager-web-app`
 
-Install dependencies: `npm i`
+- Install dependencies: `npm i`
 
-Start application: `node app.js`
+- Start application: `node app.js`
 
 The application should now start on the determined server. CRUD functions set to work on a default mLab database. 
 
