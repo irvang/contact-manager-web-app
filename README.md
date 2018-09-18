@@ -7,6 +7,29 @@ A contact manager applciation using Express and Mongoose for  the backend, vanil
 ### Deployed Site
 [Contact Manager Web Application on Heroku](https://contact-manager-irv.herokuapp.com).
 
+## Getting Started 
+
+### Prerequisites
+You will need [Node.js](https://nodejs.org/en/) in order to run the application locally.
+ 
+### Installing
+Clone or download the folder. 
+
+Change to folder directory:
+
+`cd ~/contact-manager-web-app`
+
+Install dependencies:
+
+`npm i`
+
+Start application:
+
+`node app.js`
+
+The application should now start on the determined server. CRUD functions set to work on a default mLab database. 
+
+
 ## Features
 
 
@@ -25,7 +48,3 @@ A contact manager applciation using Express and Mongoose for  the backend, vanil
 - [Mongoose](https://mongoosejs.com/) - Object modeling for Node.js
 - [mLab](https://mlab.com/) - Database
 - [Bootstrap 4](https://getbootstrap.com/)  - Front-end design framework
-
-
-## Acknowledgments
-- [Cytonn Photography](https://unsplash.com/@cytonn_photography?utm_medium=referral&amp;utm_campaign=photographer-credit&amp;utm_content=creditBadge)
