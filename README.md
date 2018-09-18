@@ -10,7 +10,7 @@ A contact manager applciation using Express and Mongoose for  the backend, vanil
 ## Getting Started 
 
 ### Prerequisites
-You will need [Node.js](https://nodejs.org/en/) in order to run the application locally.
+[Node.js](https://nodejs.org/en/) is needed in order to run the application locally.
  
 ### Installation
 Clone or download the folder. 
