@@ -9,7 +9,7 @@ const setupController = require('./controllers/setupController');
 //====MODELS
 
 //====PORT
-const port = process.env.PORT || 3001;
+const port = process.env.PORT || 3000;
  
 //====VIEW
 // app.set('view engine', 'ejs');

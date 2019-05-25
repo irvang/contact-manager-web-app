@@ -1,3 +1,5 @@
+"use strict";
+
 //post button
 document.querySelector('#post-btn').addEventListener('click', postFetch);
 

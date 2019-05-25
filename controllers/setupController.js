@@ -27,7 +27,7 @@ module.exports = seedContacts;
 [
 	{
 		'repeat(20, 20)': {
-			_id: '{{objectId()}}',
+			// _id: '{{objectId()}}',
 
 			firstName: '{{firstName()}}',
 			lastName: '{{surname()}}',

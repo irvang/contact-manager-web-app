@@ -2,6 +2,9 @@
 	NOT USED, USING SORT-TABLE-ARRAY.JS
 	Adapted from https://www.w3schools.com/howto/howto_js_sort_table.asp
 */
+
+"use strict";
+
 function sortTable(n) {
 	return function (evt) {
 		// console.log(evt.target);

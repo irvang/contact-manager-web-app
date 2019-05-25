@@ -1,3 +1,5 @@
+"use strict";
+
 //====GET
 function getFetch() {
 	// see MDN's fetch() for options object passed as second parameter
@@ -65,6 +67,7 @@ function postFetch(evt) {
 
 //====PUT
 function putFetch(tr, id) {
+	console.log('called put')
 	const responseDisplay = document.querySelector('#responseDisplay');
 
 	let cells = tr.cells;//get cells

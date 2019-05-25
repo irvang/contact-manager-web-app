@@ -1,6 +1,9 @@
 /* 
 	Adapted from https://www.w3schools.com/howto/howto_js_filter_table.asp
 */
+
+"use strict";
+
 function filterByProperty(evt) {
 	//number (0..3) that will decide which table element to sort
 	let propToFilter = parseInt(document.querySelector('#propToFilter').value);
