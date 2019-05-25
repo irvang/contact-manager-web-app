@@ -104,16 +104,16 @@ function createTableRows(contactList) {
 		//id added to row and to button
 		createEditButton(tr, elm);
 
-		//create TRASHBIN
-		const trashBin = tr.insertCell();
-		trashBin.classList.add('trashIcon');
-		trashBin.dataset.id = elm._id;
-		trashBin.addEventListener('click', function (evt) {
-			deleteContactFetch(evt.target.dataset.id)
-		});
+		createTrashBin(tr, elm);
 
 		tableBody.appendChild(tr);
 	});
+}
+
+function createTrashBin(tr, elm) {
+	const trashBin = tr.insertCell();
+	trashBin.classList.add('trashIcon');
+	trashBin.dataset.id = elm._id;
 }
 
 //---------------------------
@@ -135,68 +135,45 @@ function createEditButton(tr, elm) {
 	btn.classList.add('editButton', 'btn', 'btn-outline-primary', 'btn-sm');
 	// btn.style.minWidth = '6rem';//set fixed width to avoid adjusting behavior
 	editCell.appendChild(btn);
-
-	// btn.addEventListener('click', editContact());
-	// let trashbin = tr.cells[tr.cells.length - 1];
-
-	function editContact() {
-		let editMode = false;
-		return function () {
-			editMode = !editMode;
-
-			this.textContent = editMode ? 'Update' : 'Edit';
-			this.classList.toggle('btn-outline-primary');
-			this.classList.toggle('btn-success');
-
-			tr.contentEditable = editMode;
-			tr.classList.toggle('textEditable');
-
-			trashbin.contentEditable = 'false';
-			editCell.contentEditable = 'false';
-
-			if (!editMode) putFetch(tr, this.dataset.id);
-		}
-	}
 }
 
 let contactsTable = document.querySelector('#contactsTable');
-
 contactsTable.addEventListener('click', evt => {
 
 	if (evt.target && evt.target.matches('td>button.editButton')) {
-		// console.log(evt.target.parentElement.parentElement);
-		let tr = evt.target.parentElement.parentElement
-		let trashbin = tr.cells[tr.cells.length - 1];
-		let editCell = evt.target.parentElement;
-
-		// let editMode = false;
-		let { dataset } = evt.target;
-
-
-		//typeof editMode is string, therefore, if  
-		// editMode === "true", return true, else false.
-		//stores flipped value as a bolean on "editMode." 
-		let editMode = !(dataset.editMode === "true")
-		dataset.editMode = editMode;
-
-		evt.target.textContent = editMode ? 'Update' : 'Edit';
-		evt.target.classList.toggle('btn-outline-primary');
-		evt.target.classList.toggle('btn-success');
-
-		tr.contentEditable = editMode;
-		tr.classList.toggle('textEditable');
-
-		trashbin.contentEditable = 'false';
-		editCell.contentEditable = 'false';
-
-		if (!editMode) putFetch(tr, evt.target.dataset.id);
-
-
+		buttonsListener(evt);
 	} else if (evt.target && evt.target.matches('td.trashIcon')) {
-		console.log(evt.target);
-
+		deleteContactFetch(evt.target.dataset.id);
 	}
 });
 
+
+function buttonsListener(evt) {
+
+	let tr = evt.target.parentElement.parentElement;
+	let trashbin = tr.cells[tr.cells.length - 1];
+	let editCell = evt.target.parentElement;
+
+	let { dataset } = evt.target;
+
+	//typeof editMode is string, therefore, if  
+	// editMode === "true", return true, else false.
+	//stores flipped value as a bolean on "editMode." 
+	let editMode = !(dataset.editMode === "true");
+	dataset.editMode = editMode;
+
+	evt.target.textContent = editMode ? 'Update' : 'Edit';
+	evt.target.classList.toggle('btn-outline-primary');
+	evt.target.classList.toggle('btn-success');
+
+	tr.contentEditable = editMode;
+	tr.classList.toggle('textEditable');
+
+	trashbin.contentEditable = 'false';
+	editCell.contentEditable = 'false';
+
+	if (!editMode)
+		putFetch(tr, evt.target.dataset.id);
+}
 // console.log(tbody.rows[10].cells[1]);
 // tbody.rows[10].cells[1]
