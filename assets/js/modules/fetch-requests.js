@@ -28,18 +28,6 @@ function getFetch() {
 			let nameTh = document.querySelector('#th-firstName');
 			nameTh.dispatchEvent(new Event('click'));
 
-
-			// sortTableArray.apply({
-			// 	target: {
-			// 		dataset: {
-			// 			name: 'firstName',
-			// 			cellIndex: 0
-			// 		}
-			// 	},
-			// 	startAscending: true,
-			// 	contactListPass: parsedJsonContactList
-			// });
-
 		})
 		.catch(error => {
 			console.error('Error:', error)
@@ -84,7 +72,7 @@ function postFetch(evt) {
 
 //====PUT
 function putFetch(tr, id) {
-	console.log('called put')
+
 	const responseDisplay = document.querySelector('#responseDisplay');
 
 	let cells = tr.cells;//get cells

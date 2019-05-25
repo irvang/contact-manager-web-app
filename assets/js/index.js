@@ -1,6 +1,6 @@
 
 
-import { getFetch } from "./modules/requests.js";
+import { getFetch } from "./modules/fetch-requests.js";
 
 import sideEffect from "./modules/add-listeners.js";
 

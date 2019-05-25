@@ -1,23 +1,29 @@
 
 
-import { getFetch, postFetch, putFetch, deleteContactFetch } from "./requests.js";
+import { getFetch, postFetch, putFetch, deleteContactFetch } from "./fetch-requests.js";
 import sortTableArray from "./sort-table-array.js";
 import filterByProperty from './filter-by-property.js';
+
+import editAndDeleteListener from './editAndDeleteListener.js'
 
 //using only for its effect     
 let sideEffect;
 export default sideEffect;
 
-//post button
+//POST BUTTON
 document.querySelector('#post-btn').addEventListener('click', postFetch);
 
-//get button
+//====GET BUTTON - really useful
 document.querySelector('#get').addEventListener('click', getFetch);
 
-document.querySelector('#search-input').addEventListener('keyup', filterByProperty);
+// document.querySelector('#search-input')
+// 	.addEventListener('keyup', filterByProperty);
 
+//====EDIT AND DELETE
+document.querySelector('#contactsTable')
+	.addEventListener('click', editAndDeleteListener);
 
-//array-table sorting
+//====ARRAY-TABLE-SORTING
 document.querySelector('#th-firstName')
 	.addEventListener('click', sortTableArray);
 
