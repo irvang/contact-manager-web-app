@@ -1,5 +1,9 @@
 "use strict";
 
+import sortTableArray from "./sort-table-array.js"
+
+export { getFetch, postFetch, putFetch, deleteContactFetch };
+
 //====GET
 function getFetch() {
 	// see MDN's fetch() for options object passed as second parameter

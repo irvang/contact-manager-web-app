@@ -1,35 +1,37 @@
 /* Using closure to keep a state. sortOb will keep memory of state
 Using double closure to allow overloading and using function passing values */
 
-"use strict";
+import { getFetch, putFetch, deleteContactFetch } from "./requests.js";
 
-const sortTableArray = (function () {
-	const sortOb = {};
-	sortOb.checkRepeat = '';
-	sortOb.sortDirection = -1;
-	sortOb.contactList = [];
-	return function () {
+const sortOb = {};
+sortOb.checkRepeat = '';
+sortOb.sortDirection = -1;
+sortOb.contactList = [];
 
-		//if there is a flag property passed, start in ascending order
-		if (this.startAscending) {
-			sortOb.contactList = this.contactListPass;
-			sortOb.sortDirection = -1
-		};
+export default function sortTableArray(evt) {
+console.log('clicking sort')
+	// return function () {
 
-		let prop = this.dataset.name;
-		let n = parseInt(this.dataset.cellIndex);
+	//if there is a flag property passed, start in ascending order
+	if (this.startAscending) {
+		sortOb.contactList = this.contactListPass;
+		sortOb.sortDirection = -1
+	};
 
-		let tbody = document.querySelector('#contactsTable>tbody');
-		let sortedContactList = [];
-		if (prop === 'birthday') {
-			sortedContactList = sortOb.contactList.sort(sortDate(prop, n, sortOb));
-		} else {
-			sortedContactList = sortOb.contactList.sort(sortString(prop, n, sortOb));
-		}
+	let prop = this.dataset.name;
+	let n = parseInt(this.dataset.cellIndex);
 
-		createTableRows(sortedContactList);
+	let tbody = document.querySelector('#contactsTable>tbody');
+	let sortedContactList = [];
+	if (prop === 'birthday') {
+		sortedContactList = sortOb.contactList.sort(sortDate(prop, n, sortOb));
+	} else {
+		sortedContactList = sortOb.contactList.sort(sortString(prop, n, sortOb));
 	}
-})();
+
+	createTableRows(sortedContactList);
+	// }
+}
 
 //bind to fake dataset and cellIndex. Adds a flag to always sort in ascending order.
 // let boundSortTableArray = sortTableArray.bind({ dataset: { name: 'firstName', cellIndex: 0 }, flag: true });

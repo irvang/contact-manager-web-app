@@ -1,5 +1,8 @@
 "use strict";
 
+import { getFetch, postFetch, putFetch, deleteContactFetch } from "./requests.js";
+import sortTableArray from "./sort-table-array.js";
+console.log(sortTableArray)
 //post button
 document.querySelector('#post-btn').addEventListener('click', postFetch);
 
