@@ -7,16 +7,18 @@ const startAscending = true;
 const sortOb = {};
 sortOb.checkRepeat = '';
 sortOb.sortDirection = -1;
-sortOb.contactList = [];
+// sortOb.contactList = globalContactList;
 
 export default function sortTableArray(evt) {
 
+
 	// return function () {
+	// console.log(evt.target, this)
 
 	//if there is a flag property passed, start in ascending order
 	if (startAscending) {
-		sortOb.contactList = globalContactList;
-		sortOb.sortDirection = -1
+		// globalContactList = globalContactList;
+		// sortOb.sortDirection = -1
 	};
 
 	let prop = evt.target.dataset.name;
@@ -25,9 +27,9 @@ export default function sortTableArray(evt) {
 	let tbody = document.querySelector('#contactsTable>tbody');
 	let sortedContactList = [];
 	if (prop === 'birthday') {
-		sortedContactList = sortOb.contactList.sort(sortDate(prop, n, sortOb));
+		sortedContactList = globalContactList.sort(sortDate(prop, n, sortOb));
 	} else {
-		sortedContactList = sortOb.contactList.sort(sortString(prop, n, sortOb));
+		sortedContactList = globalContactList.sort(sortString(prop, n, sortOb));
 	}
 
 	createTableRows(sortedContactList);
@@ -81,7 +83,7 @@ function arrowDirection(dir, n) {
 	//n is the row number; i is the element that matches the row number
 	//span innerHTML will be set to ascending or descending arrow
 	allSpans.forEach(function (elm, i) {
-		i === n ? elm.innerHTML = arrowDir : elm.innerHTML = '&nbsp;';
+		i === n ? elm.innerHTML = arrowDir : elm.innerHTML = '&nbsp;&nbsp;';
 	});
 }
 

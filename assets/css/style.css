@@ -2,6 +2,7 @@ body {
 	font-size: 12px;
 	width: 97%;
 	margin: 0 auto;
+	box-sizing: border-box;
 	/* background-color: cornsilk; */
 	/* background-color: snow; */
 	/* background-color: whitesmoke; */
@@ -12,7 +13,12 @@ body {
 	background: linear-gradient(to right, gainsboro, #fffff2);
 }
 
-/* details>form, */
+thead>tr span {
+	/* https://css-tricks.com/slightly-careful-sub-elements-clickable-things/ 
+	prevents bubbling from span to th
+	*/
+	pointer-events: none
+}
 
 div.table-responsive, .input-group, div.get-btn-parent, details {
 	padding: 3px;
@@ -43,8 +49,9 @@ legend {
 }
 
 /* Overriding bootstrap class */
+
 .btn-sm {
-	font-size:0.7rem;
+	font-size: 0.7rem;
 }
 
 .input-group-sm {

@@ -1,6 +1,6 @@
 "use strict";
 
-import sortTableArray from "./sort-table-array.js"
+// import sortTableArray from "./sort-table-array.js"
 
 export { getFetch, postFetch, putFetch, deleteContactFetch, globalContactList };
 

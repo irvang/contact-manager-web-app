@@ -2,6 +2,7 @@
 
 import { getFetch, postFetch, putFetch, deleteContactFetch } from "./requests.js";
 import sortTableArray from "./sort-table-array.js";
+import filterByProperty from './filter-by-property.js';
 
 //using only for its effect     
 let sideEffect;
@@ -14,6 +15,7 @@ document.querySelector('#post-btn').addEventListener('click', postFetch);
 document.querySelector('#get').addEventListener('click', getFetch);
 
 document.querySelector('#search-input').addEventListener('keyup', filterByProperty);
+
 
 //array-table sorting
 document.querySelector('#th-firstName')
@@ -34,3 +36,4 @@ document.querySelector('#th-dob')
 
 document.querySelector('#th-notes')
 	.addEventListener('click', sortTableArray);
+
