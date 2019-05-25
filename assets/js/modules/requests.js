@@ -2,11 +2,13 @@
 
 import sortTableArray from "./sort-table-array.js"
 
-export { getFetch, postFetch, putFetch, deleteContactFetch };
+export { getFetch, postFetch, putFetch, deleteContactFetch, globalContactList };
 
+let globalContactList = [];
 //====GET
 function getFetch() {
 	// see MDN's fetch() for options object passed as second parameter
+
 	fetch('/contacts')
 		.then(function (responseContactList) {
 			/* response is the list in JSON, response.json() parses it
@@ -19,20 +21,31 @@ function getFetch() {
 			document.querySelector('#responseDisplay').innerHTML = `
 			There are ${parsedJsonContactList.length} contacts on your list :)`;
 
+			globalContactList = [...parsedJsonContactList]
 			//Creates the table, and passes the contact list reference to the function
 			//mimicks a dataset object in order to use same function as the listeners
-			sortTableArray.apply({
-				dataset: {
-					name: 'firstName',
-					cellIndex: 0
-				},
-				startAscending: true,
-				contactListPass: parsedJsonContactList
-			});
+
+			let nameTh = document.querySelector('#th-firstName');
+			nameTh.dispatchEvent(new Event('click'));
+
+
+			// sortTableArray.apply({
+			// 	target: {
+			// 		dataset: {
+			// 			name: 'firstName',
+			// 			cellIndex: 0
+			// 		}
+			// 	},
+			// 	startAscending: true,
+			// 	contactListPass: parsedJsonContactList
+			// });
+
 		})
 		.catch(error => {
 			console.error('Error:', error)
 		});
+
+
 }
 
 //====POST

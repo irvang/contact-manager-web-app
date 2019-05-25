@@ -1,25 +1,26 @@
 /* Using closure to keep a state. sortOb will keep memory of state
 Using double closure to allow overloading and using function passing values */
 
-import { getFetch, putFetch, deleteContactFetch } from "./requests.js";
+import { getFetch, putFetch, deleteContactFetch, globalContactList } from "./requests.js";
 
+const startAscending = true;
 const sortOb = {};
 sortOb.checkRepeat = '';
 sortOb.sortDirection = -1;
 sortOb.contactList = [];
 
 export default function sortTableArray(evt) {
-console.log('clicking sort')
+
 	// return function () {
 
 	//if there is a flag property passed, start in ascending order
-	if (this.startAscending) {
-		sortOb.contactList = this.contactListPass;
+	if (startAscending) {
+		sortOb.contactList = globalContactList;
 		sortOb.sortDirection = -1
 	};
 
-	let prop = this.dataset.name;
-	let n = parseInt(this.dataset.cellIndex);
+	let prop = evt.target.dataset.name;
+	let n = parseInt(evt.target.dataset.cellIndex);
 
 	let tbody = document.querySelector('#contactsTable>tbody');
 	let sortedContactList = [];

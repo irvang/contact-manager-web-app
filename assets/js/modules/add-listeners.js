@@ -1,8 +1,12 @@
-"use strict";
+
 
 import { getFetch, postFetch, putFetch, deleteContactFetch } from "./requests.js";
 import sortTableArray from "./sort-table-array.js";
-console.log(sortTableArray)
+
+//using only for its effect     
+let sideEffect;
+export default sideEffect;
+
 //post button
 document.querySelector('#post-btn').addEventListener('click', postFetch);
 
@@ -14,6 +18,7 @@ document.querySelector('#search-input').addEventListener('keyup', filterByProper
 //array-table sorting
 document.querySelector('#th-firstName')
 	.addEventListener('click', sortTableArray);
+
 
 document.querySelector('#th-lastName')
 	.addEventListener('click', sortTableArray);
