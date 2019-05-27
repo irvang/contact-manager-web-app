@@ -71,7 +71,6 @@ async function putFetch(tr, id) {
 
 	let cells = tr.cells;//get cells
 	let obj = {};//will hold properties to update
-	obj.id = id;//use this id to findByIdAndUpdate with express
 	for (let i = 0; i < cells.length; i++) {//cells is array-like
 		if (cells[i].attributes.itemprop) {//if there is itemprop
 			let prop = cells[i].attributes.itemprop.value;//itemprop: name, last, etc
@@ -82,7 +81,7 @@ async function putFetch(tr, id) {
 
 	// Fetch
 	try {
-		let response = await fetch('/update-contact', {
+		let response = await fetch('/contact/' + id, {
 			method: 'PUT',
 			body: JSON.stringify(obj),	//convert to JSON
 			headers: new Headers({

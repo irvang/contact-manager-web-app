@@ -25,7 +25,7 @@ module.exports = function (app) {
 			// console.log(contacts.length);//send lenght of list, for later
 			res.send(contacts);
 		});
-	}); 
+	});
 
 	//====POST - post new contact to database
 	//contacts/
@@ -50,8 +50,9 @@ module.exports = function (app) {
 
 	//====PUT - change a contact by its id
 	//contacts/:id
-	app.put('/update-contact', (req, res, next) => {
-		const { firstName, lastName, phoneNumber, email, birthday, notes, id } = req.body;
+	app.put('/contact/:id', (req, res, next) => {
+		const { id } = req.params;
+		const { firstName, lastName, phoneNumber, email, birthday, notes } = req.body;
 		if (id) {
 			Contact.model.findByIdAndUpdate(id, {
 				//schema
