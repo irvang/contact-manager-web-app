@@ -13,7 +13,7 @@ export default sideEffect;
 //POST BUTTON
 document.querySelector('#post-btn').addEventListener('click', postFetch);
 
-//====GET BUTTON - really useful
+//====GET BUTTON - really useless, function triggered automatically
 document.querySelector('#get').addEventListener('click', getFetch);
 
 // document.querySelector('#search-input')
