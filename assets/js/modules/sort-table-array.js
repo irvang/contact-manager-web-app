@@ -1,5 +1,5 @@
 
-import { getFetch, putFetch, deleteContactFetch, globalContactList } from "./fetch-requests.js";
+import { globalContactList } from "./fetch-requests.js";
 import createTableRows from "./createElements.js";
 
 

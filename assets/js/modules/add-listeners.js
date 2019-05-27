@@ -1,8 +1,6 @@
-
-
-import { getFetch, postFetch, putFetch, deleteContactFetch } from "./fetch-requests.js";
+import { getFetch, postFetch } from "./fetch-requests.js";
 import sortTableArray from "./sort-table-array.js";
-import filterByProperty from './filter-by-property.js';
+
 
 import editAndDeleteListener from './editAndDeleteListener.js'
 
@@ -16,8 +14,6 @@ document.querySelector('#post-btn').addEventListener('click', postFetch);
 //====GET BUTTON - really useless, function triggered automatically
 document.querySelector('#get').addEventListener('click', getFetch);
 
-// document.querySelector('#search-input')
-// 	.addEventListener('keyup', filterByProperty);
 
 //====EDIT AND DELETE
 document.querySelector('#contactsTable')

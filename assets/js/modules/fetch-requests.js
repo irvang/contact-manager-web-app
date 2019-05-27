@@ -5,9 +5,11 @@
 export { getFetch, postFetch, putFetch, deleteContactFetch, globalContactList };
 
 let globalContactList = [];
+
 //====GET
 async function getFetch() {
 
+	// Fetch
 	try {
 		const response = await fetch('/contacts');
 
@@ -28,34 +30,6 @@ async function getFetch() {
 	}
 }
 
-function getFetch2() {
-	// see MDN's fetch() for options object passed as second parameter
-
-	fetch('/contacts')
-		.then(function (responseContactList) {
-			/* response is the list in JSON, response.json() parses it
-			body.json() */
-			return responseContactList.json();
-
-		})
-		.then(function (parsedJsonContactList) {
-
-			document.querySelector('#responseDisplay').innerHTML = `
-			There are ${parsedJsonContactList.length} contacts on your list :)`;
-
-			globalContactList = [...parsedJsonContactList]
-			//Creates the table, and passes the contact list reference to the function
-			//mimicks a dataset object in order to use same function as the listeners
-
-			let nameTh = document.querySelector('#th-firstName');
-			nameTh.dispatchEvent(new Event('click'));
-
-		})
-		.catch(error => {
-			console.error('Error:', error)
-		});
-}
-
 //====POST
 async function postFetch(evt) {
 	evt.preventDefault();//prevents form submisison
@@ -68,6 +42,7 @@ async function postFetch(evt) {
 		item.value = ""
 	});
 
+	// Fetch
 	try {
 		const response = await fetch('/contact', {
 			method: 'POST', // or 'PUT'
@@ -84,48 +59,13 @@ async function postFetch(evt) {
 		document.querySelector('#myForm span').innerHTML = text;
 		getFetch();//reload table
 
-	} catch (error) {
-		console.error('Error:', error)
+	} catch (err) {
+		console.error('Error:', err)
 	}
 }
 
-function postFetch2(evt) {
-	evt.preventDefault();//prevents form submisison
-	const myObject = {};
-	const inputs = document.querySelectorAll('form#myForm input');
-	const responseDisplay = document.querySelector('#responseDisplay');
-
-	inputs.forEach(function (item) {
-		myObject[item.name] = item.value;
-		item.value = ""
-	});
-
-	fetch('/contact', {
-		method: 'POST', // or 'PUT'
-		body: JSON.stringify(myObject), // data can be `string` or {object}!
-		headers: new Headers({
-			'Content-Type': 'application/json'
-		})
-	}).then(res => {
-
-		//	res.text() returns a promise
-		return res.text();
-
-	}).then(text => {
-		//clear inputs after response is received
-		responseDisplay.innerHTML = '&nbsp;';
-		document.querySelector('#myForm span').innerHTML = text;
-		getFetch();//reload table
-
-	}).catch(error => {
-		console.error('Error:', error)
-	});
-}
-
 //====PUT
-function putFetch(tr, id) {
-
-	const responseDisplay = document.querySelector('#responseDisplay');
+async function putFetch(tr, id) {
 
 	let cells = tr.cells;//get cells
 	let obj = {};//will hold properties to update
@@ -138,50 +78,53 @@ function putFetch(tr, id) {
 		}
 	}
 
-	fetch('/update-contact', {
-		method: 'PUT',
-		body: JSON.stringify(obj),	//convert to JSON
-		headers: new Headers({
-			'Content-Type': 'application/json'
-		})
-	}).then(res => {
-
-		//	res.text() returns a promise
-		return res.text();
-	}).then(text => {
-		responseDisplay.innerHTML = text;
-	}).catch(error => {
-		console.error('Error:', error)
-	});
-}
-
-//====DELETE
-function deleteContactFetch(_id) {
-
-	let confirmation = confirm('Are you sure you want to delete this contact?');
-	let bodyId = JSON.stringify({ id: _id });// {"id": ""}
-	if (confirmation) {
-		// let _id = parseInt(evt.target.dataset.id);
-
-		fetch('/contact', {
-			method: 'DELETE',
-			body: bodyId,
+	// Fetch
+	try {
+		let response = await fetch('/update-contact', {
+			method: 'PUT',
+			body: JSON.stringify(obj),	//convert to JSON
 			headers: new Headers({
 				'Content-Type': 'application/json'
 			})
-		}).then(function (response) {
+		});
 
-			//	res.text() returns a promise
-			return response.text()
+		let text = await response.text();
+		document.querySelector('#responseDisplay').innerHTML = text;
 
-		}).then(text => {
+	} catch (err) {
+		console.error('Error:', error)
+	}
+}
+
+//====DELETE
+async function deleteContactFetch(_id) {
+
+	let confirmation = confirm('Are you sure you want to delete this contact?');
+	if (confirmation) {
+		
+		let bodyId = JSON.stringify({ id: _id });// {"id": ""}
+		// let _id = parseInt(evt.target.dataset.id);
+
+		try {
+
+			const options = {
+				method: 'DELETE',
+				body: bodyId,
+				headers: new Headers({
+					'Content-Type': 'application/json'
+				})
+			};
+
+			const response = await fetch('/contact', options);
+
+			const text = await response.text();
 
 			// console.log('Delete response: ' + text);
 			//once contact has been deleted,fetch again contacts with new array
 			getFetch();
-		})
-			.catch(error => {
-				console.error('Error:', error)
-			});
+
+		} catch (err) {
+			console.error('Error:', err)
+		}
 	}
 }

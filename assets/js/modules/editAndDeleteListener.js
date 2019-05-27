@@ -1,5 +1,5 @@
 
-import { getFetch, putFetch, deleteContactFetch, globalContactList } from "./fetch-requests.js";
+import { putFetch, deleteContactFetch } from "./fetch-requests.js";
 
 export default function editAndDeleteListener(evt) {
 
