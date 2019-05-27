@@ -6,7 +6,29 @@ export { getFetch, postFetch, putFetch, deleteContactFetch, globalContactList };
 
 let globalContactList = [];
 //====GET
-function getFetch() {
+async function getFetch() {
+
+	try {
+		const response = await fetch('/contacts');
+
+		/* response.json() extracts the body */
+		const contactList = await response.json();
+
+		document.querySelector('#responseDisplay').innerHTML = `
+			There are ${contactList.length} contacts on your list :)`;
+
+		globalContactList = [...contactList];
+
+		//fire event to sort table by name once the contacts are stored globally
+		let nameTh = document.querySelector('#th-firstName');
+		nameTh.dispatchEvent(new Event('click'));
+
+	} catch (err) {
+		console.log(err);
+	}
+}
+
+function getFetch2() {
 	// see MDN's fetch() for options object passed as second parameter
 
 	fetch('/contacts')
@@ -32,12 +54,42 @@ function getFetch() {
 		.catch(error => {
 			console.error('Error:', error)
 		});
-
-
 }
 
 //====POST
-function postFetch(evt) {
+async function postFetch(evt) {
+	evt.preventDefault();//prevents form submisison
+	const myObject = {};
+	const inputs = document.querySelectorAll('form#myForm input');
+	const responseDisplay = document.querySelector('#responseDisplay');
+
+	inputs.forEach(function (item) {
+		myObject[item.name] = item.value;
+		item.value = ""
+	});
+
+	try {
+		const response = await fetch('/contact', {
+			method: 'POST', // or 'PUT'
+			body: JSON.stringify(myObject), // data can be `string` or {object}!
+			headers: new Headers({
+				'Content-Type': 'application/json'
+			})
+		});
+
+		const text = await response.text();
+
+		//clear inputs after response is received
+		responseDisplay.innerHTML = '&nbsp;';
+		document.querySelector('#myForm span').innerHTML = text;
+		getFetch();//reload table
+
+	} catch (error) {
+		console.error('Error:', error)
+	}
+}
+
+function postFetch2(evt) {
 	evt.preventDefault();//prevents form submisison
 	const myObject = {};
 	const inputs = document.querySelectorAll('form#myForm input');
