@@ -3,13 +3,6 @@ body {
 	width: 97%;
 	margin: 0 auto;
 	box-sizing: border-box;
-	/* background-color: cornsilk; */
-	/* background-color: snow; */
-	/* background-color: whitesmoke; */
-	/* background-color:#b8b8b8; */
-	/* background: linear-gradient(to right, red, yellow, green); */
-	/* background: linear-gradient(to right, gainsboro, #fffff2, gainsboro); */
-	/* background: linear-gradient(to left, gainsboro, #fffff2); */
 	background: linear-gradient(to right, gainsboro, #fffff2);
 }
 
@@ -20,18 +13,13 @@ thead>tr span {
 	pointer-events: none
 }
 
+thead>tr th {
+	text-align: center;
+}
+
 div.table-responsive, .input-group, div.get-btn-parent, details {
 	padding: 3px;
-	/* background-color: #e2e1e1; */
-	/* background: linear-gradient(to right, #e2e1e1, burlywood); */
-	/* background:linear-gradient(to bottom right, #85ff78, #87d1de); */
-	/* background: linear-gradient(to bottom right, #c6d2ff, #a9dae3); */
-	/* background: linear-gradient(to bottom right, #c6d2ff, #313232); */
-	/* background: linear-gradient(to bottom right, #a4adcf, #7c8585); */
 	background: linear-gradient(to bottom right, #c6d2ff, #3132324d);
-	/* background: linear-gradient(to bottom right, #e7ecff, #c4eef6); */
-	/* background-color: snow; */
-	/* background-color: whitesmoke; */
 }
 
 details {
@@ -80,7 +68,6 @@ tbody>tr:hover {
 
 td.trashIcon {
 	background-image: url("../img/trash-icon.png");
-	/* background-color: transparent; */
 	background-position: center center;
 	background-repeat: no-repeat;
 	width: 20px;
@@ -95,10 +82,6 @@ td.trashIcon {
 	overflow-y: scroll; */
 	/* background-color: lightblue; */
 }
-
-/* tr>td:nth-child(6) {
-
-} */
 
 .textEditable {
 	background-color: lightgoldenrodyellow;

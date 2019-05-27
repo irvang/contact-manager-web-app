@@ -60,14 +60,14 @@ function arrowDirection(dir, n) {
 	//the rest, have its value set &nbsp;
 
 	//set to ascending or descending arrow
-	let arrowDir = dir === 1 ? '&#9650;' : '&#9660;';
+	let arrowDir = dir === 1 ? '&#8593;' : '&#8595;';
 
 	let allSpans = document.querySelectorAll('#contactsTable>thead span');
 
 	//n is the row number; i is the element that matches the row number
 	//span innerHTML will be set to ascending or descending arrow
 	allSpans.forEach(function (elm, i) {
-		i === n ? elm.innerHTML = arrowDir : elm.innerHTML = '&nbsp;&nbsp;';
+		i === n ? elm.innerHTML = arrowDir : elm.innerHTML = '&#8597;';
 	});
 }
 
