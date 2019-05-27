@@ -10,7 +10,7 @@ const setupController = require('./controllers/setupController');
 
 //====PORT
 const port = process.env.PORT || 3000;
- 
+
 //====VIEW
 // app.set('view engine', 'ejs');
 // app.use('/', express.static('views'));//rendering static html
@@ -25,7 +25,10 @@ apiController(app);
 setupController(app);
 
 //====MONGOOSE CONNECTION
-mongoose.connect(config.getDbConnectionString());//returns string
+//config.getDbConnectionString() returns string
+mongoose.connect(config.getDbConnectionString(), { useNewUrlParser: true })
+	.then(() => console.log('MongoDB Connected'))
+	.catch(err => console.log(err));
 
 //====CONNECTION
 app.listen(port, () => {
