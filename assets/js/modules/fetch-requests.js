@@ -1,6 +1,6 @@
 "use strict";
 
-// import sortTableArray from "./sort-table-array.js"
+import { resetCheckRepeat } from "./sort-table-array.js"
 
 export { getFetch, postFetch, putFetch, deleteContactFetch, globalContactList };
 
@@ -20,6 +20,8 @@ async function getFetch() {
 			There are ${contactList.length} contacts on your list :)`;
 
 		globalContactList = [...contactList];
+
+		resetCheckRepeat();
 
 		//fire event to sort table by name once the contacts are stored globally
 		let nameTh = document.querySelector('#th-firstName');
@@ -101,7 +103,7 @@ async function deleteContactFetch(_id) {
 
 	let confirmation = confirm('Are you sure you want to delete this contact?');
 	if (confirmation) {
-		
+
 		let bodyId = JSON.stringify({ id: _id });// {"id": ""}
 		// let _id = parseInt(evt.target.dataset.id);
 
@@ -121,7 +123,9 @@ async function deleteContactFetch(_id) {
 
 			// console.log('Delete response: ' + text);
 			//once contact has been deleted,fetch again contacts with new array
+			// resetCheckRepeat();
 			getFetch();
+
 
 		} catch (err) {
 			console.error('Error:', err)

@@ -6,12 +6,13 @@ import createTableRows from "./createElements.js";
 let checkRepeat = '';
 let sortDirection = -1;
 
+export { resetCheckRepeat };
+
 export default function sortTableArray(evt) {
 
 	let prop = evt.target.dataset.name;
 	let n = parseInt(evt.target.dataset.cellIndex);
 
-	let tbody = document.querySelector('#contactsTable>tbody');
 	let sortedContactList = [];
 	if (prop === 'birthday') {
 		sortedContactList = globalContactList.sort(sortDate(prop, n));
@@ -70,6 +71,11 @@ function arrowDirection(dir, n) {
 	});
 }
 
+// By setting checkRepeat to empty string the function ensures that all 
+// calls to get reset sort order to ascending by name
+function resetCheckRepeat() {
+	checkRepeat = '';
+}
 
 // console.log(tbody.rows[10].cells[1]);
 // tbody.rows[10].cells[1]
