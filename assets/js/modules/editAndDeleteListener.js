@@ -24,7 +24,7 @@ function editButtonsListener(evt) {
   let editMode = !(dataset.editMode === "true");
   dataset.editMode = editMode;
 
-  evt.target.textContent = editMode ? 'Update' : 'Edit';
+  evt.target.textContent = editMode ? 'Save' : 'Edit';
   evt.target.classList.toggle('btn-outline-primary');
   evt.target.classList.toggle('btn-success');
 

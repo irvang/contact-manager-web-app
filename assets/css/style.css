@@ -55,7 +55,8 @@ tbody>tr:nth-child(even) {
 }
 
 tbody>tr:hover {
-	background-color: #feffac;
+	/* background-color: #feffac; */
+	background-color: #a5e398;
 }
 
 .nowrap {
@@ -84,7 +85,15 @@ td.trashIcon {
 }
 
 .textEditable {
-	background-color: lightgoldenrodyellow;
+	/* background-color: lightgoldenrodyellow; */
+	background-color:#feffac!important;
+	/* border: 2px solid #88fd70; */
+	border: 2px solid #a5e398;
+	color: black;
+}
+
+.textEditable>td {
+	/* applies style only when textEditable is applied */
 }
 
 .displayNone {
