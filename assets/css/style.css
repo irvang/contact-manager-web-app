@@ -86,3 +86,8 @@ td.trashIcon {
 .textEditable {
 	background-color: lightgoldenrodyellow;
 }
+
+.displayNone {
+	/* used to hide and show table rows */
+	display: none;
+}
