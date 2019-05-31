@@ -25,6 +25,7 @@ apiController(app);
 setupController(app);
 
 //====MONGOOSE CONNECTION
+mongoose.set('useFindAndModify', false);// turns off deprecation warning
 //config.getDbConnectionString() returns string
 mongoose.connect(config.getDbConnectionString(), { useNewUrlParser: true })
 	.then(() => console.log('MongoDB Connected'))
