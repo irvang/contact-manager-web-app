@@ -100,3 +100,7 @@ td.trashIcon {
 	/* used to hide and show table rows */
 	display: none;
 }
+
+td.trashIcon:hover {
+	cursor: pointer;
+}
