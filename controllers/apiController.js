@@ -10,19 +10,12 @@ module.exports = function (app) {
 	app.use(bodyParser.urlencoded({ extended: true }));
 
 	//====LANDING page
-	// app.get('/', (req, res, next) => {
-	// 	res.render('index');
-	// 	// res.render('index'); 
-	// 	// res.sendFile(path.join(__dirname + '../public'));
-	// });
-
 	app.use('/', express.static('views'));//rendering static html
 
 	//====GET - all contacts
 	app.get('/contacts', (req, res, next) => {
 		Contact.model.find(function (err, contacts) {
 			if (err) return console.error(err);
-			// console.log(contacts.length);//send lenght of list, for later
 			res.send(contacts);
 		});
 	});
@@ -39,13 +32,16 @@ module.exports = function (app) {
 
 		const newContact = new Contact.creator(firstName, lastName, phoneNumber, email, bday, notes);
 
+		// const newContact = new Contact.model({
+		// 	firstName: firstName, 
+		// 	lastName: lastName
+		// // ...
+		// });
+
 		newContact.save((err) => {
 			if (err) throw err;
-			// res.send('successsss');
 			res.send(` &nbsp;&nbsp; <strong>${firstName} ${lastName} </strong>added to contact list!`);
 		});
-
-		// console.log("at /contact -- body: ", req.body);
 	});
 
 	//====PUT - change a contact by its id
@@ -77,14 +73,13 @@ module.exports = function (app) {
 	//====DELETE - delete a contact by its id?
 	// /contacts/:id
 	app.delete('/contact', (req, res, next) => {
-		// console.log('in DELETE', req.body);
 
 		if (req.body.id) {
 			let q = Contact.model.findByIdAndRemove(req.body.id, function (err) {
 				if (err) throw err;
 				res.send('Contact deleted successfully!');
 			});
-			// console.log(q.schema.obj);
+			
 		} else {
 			res.status(404).send();
 		}

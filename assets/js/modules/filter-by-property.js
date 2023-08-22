@@ -14,6 +14,7 @@ export default function filterByProperty(evt) {
 	// let table = document.querySelector("#contactsTable>tbody");//selecting tbody
 	let tr = table.getElementsByTagName("tr"); // HTML collection, all rows
 
+	let regEx = new RegExp(input.value, 'i');
 
 	// Loop through all table rows, and hide those that don't match the search query
 	for (let i = 0; i < tr.length; i++) {
@@ -23,7 +24,7 @@ export default function filterByProperty(evt) {
 		let td = tr[i].getElementsByTagName("td")[propToFilter];
 
 		if (td) {
-			if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+			if (regEx.test(td.innerHTML)) {
 				tr[i].classList.remove('displayNone'); // tr[i].style.display = "";
 			} else {
 				tr[i].classList.add('displayNone'); // tr[i].style.display = "none";

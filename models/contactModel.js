@@ -15,7 +15,7 @@ contactSchema.methods.doSomething = function () {
 }
 
 //define model
-let Contact = mongoose.model('Contact', contactSchema);
+let Contact = mongoose.model('Contactees', contactSchema);
 
 // returns a new Contact created by the schema model
 class ContactClass {
