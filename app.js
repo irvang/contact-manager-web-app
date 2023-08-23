@@ -9,9 +9,7 @@ const setupController = require('./controllers/setupController');
 //====MODELS
 
 //====PORT
-const port = process.env.PORT || 3000;
-
-// main().catch(err => console.log(err));
+const PORT = process.env.PORT || 3000;
 
 //====VIEW
 // app.set('view engine', 'ejs');
@@ -39,6 +37,6 @@ async function main() {
 }
 
 //====CONNECTION
-app.listen(port, () => {
-	console.log(`Server listening on port ${port}`);
+app.listen(PORT, () => {
+	console.log(`Server listening on PORT ${PORT}`);
 });

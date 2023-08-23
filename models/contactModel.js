@@ -33,27 +33,13 @@ class ContactClass {
 	}
 }
 
-module.exports = {
-	model: Contact,
-	creator: ContactClass
-}
-
 /* 
 	Same as:
 	module.exports.model = Contact;
 	module.exports.creator: ContactClass;
 */
-
-
-/* 
-Fields:
-name
-lastName
-phoneNumber
-email
-
-address
-birthday
-notes
-*/
+module.exports = {
+	model: Contact,
+	creator: ContactClass
+}
 
