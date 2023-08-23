@@ -4,8 +4,6 @@
 
 A contact manager applciation using Express and Mongoose for  the backend, vanilla JS for the front-end, and mLab (MongoDB) to store and retrieve data.
 
-## Deployed Site
-[Contact Manager Application on Heroku](https://contact-manager-irv.herokuapp.com).
 
 ## Getting Started 
 
