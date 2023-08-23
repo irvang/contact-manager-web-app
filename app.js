@@ -27,20 +27,16 @@ apiController(app);
 setupController(app);
 
 //====MONGOOSE CONNECTION
-mongoose.set('useFindAndModify', false);// turns off deprecation warning
-//config.getDbConnectionString() returns string
-mongoose.connect(config.getDbConnectionString(), { useNewUrlParser: true })
-	.then(() => console.log('MongoDB Connected'))
-	.catch(err => console.log(err));
 
-// main().catch(err => console.log(err));
+main();
 
-// async function main() {
-// 	// await mongoose.connect('mongodb://127.0.0.1:27017/test');
-// 	await mongoose.connect(config.getDbConnectionString());
-
-// 	// use `await mongoose.connect('mongodb://user:password@127.0.0.1:27017/test');` if your database has auth enabled
-// }
+async function main() {
+	try {
+		await mongoose.connect(config.getDbConnectionString());
+	} catch (error) {
+		console.error('ERROR - unable to connect', error)
+	}
+}
 
 //====CONNECTION
 app.listen(port, () => {

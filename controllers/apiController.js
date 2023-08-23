@@ -13,44 +13,50 @@ module.exports = function (app) {
 	app.use('/', express.static('views'));//rendering static html
 
 	//====GET - all contacts
-	app.get('/contacts', (req, res, next) => {
-		Contact.model.find(function (err, contacts) {
-			if (err) return console.error(err);
-			res.send(contacts);
-		});
+	app.get('/contacts', async (req, res, next) => {
+		try {
+			const allContacts = await Contact.model.find({})
+			res.send(allContacts)
+		} catch (error) {
+			console.error(error)
+			res.status(400).send({ message: "No contacts found" })
+		}
 	});
 
 	//====POST - post new contact to database
 	//contacts/
-	app.post('/contact', (req, res, next) => {
-		//deconstruncting for cleaner code
-		const { firstName, lastName, phoneNumber, email, birthday, notes } = req.body;
+	app.post('/contact', async (req, res, next) => {
+		try {
 
-		//convert to array, then to mm-dd-yyyy format
-		let bday = birthday.split('-');
-		bday = `${bday[1]}-${bday[2]}-${bday[0]}`;
+			//deconstruncting for cleaner code
+			const { firstName, lastName, phoneNumber, email, birthday, notes } = req.body;
 
-		const newContact = new Contact.creator(firstName, lastName, phoneNumber, email, bday, notes);
+			//convert to array, then to mm-dd-yyyy format
+			let bday = birthday.split('-');
+			bday = `${bday[1] || 0}-${bday[2] || 0}-${bday[0] || 0}`;
 
-		// const newContact = new Contact.model({
-		// 	firstName: firstName, 
-		// 	lastName: lastName
-		// // ...
-		// });
+			const newContact = new Contact.creator(
+				firstName, lastName, phoneNumber, email, bday, notes);
 
-		newContact.save((err) => {
-			if (err) throw err;
+			const contact = await newContact.save()
+
+			res.send('Contact saved successfully!')
+		} catch (error) {
+			console.error('ERROR in /contact', error)
 			res.send(` &nbsp;&nbsp; <strong>${firstName} ${lastName} </strong>added to contact list!`);
-		});
+		}
 	});
 
 	//====PUT - change a contact by its id
 	//contacts/:id
-	app.put('/contact/:id', (req, res, next) => {
-		const { id } = req.params;
-		const { firstName, lastName, phoneNumber, email, birthday, notes } = req.body;
-		if (id) {
-			Contact.model.findByIdAndUpdate(id, {
+	app.put('/contact/:id', async (req, res, next) => {
+		try {
+			const { id } = req.params;
+			const { firstName, lastName, phoneNumber, email, birthday, notes } = req.body;
+			if (!id) {
+				res.send('Sorry, unable to find contact');
+			}
+			const deletedContact = await Contact.model.findByIdAndUpdate(id, {
 				//schema
 				firstName: firstName,
 				lastName: lastName,
@@ -60,27 +66,30 @@ module.exports = function (app) {
 				notes: notes
 
 				//callback
-			}, (err, todo) => {
-				if (err) throw err;
-				res.send('Success! Contact updated');
-			}
-			);
-		} else {
+			});
+
+			res.send('Success! Contact updated');
+
+		} catch (error) {
+			console.error(error)
 			res.send('Sorry, unable to find contact');
 		}
 	});
 
 	//====DELETE - delete a contact by its id?
 	// /contacts/:id
-	app.delete('/contact', (req, res, next) => {
+	app.delete('/contact', async (req, res, next) => {
+		try {
 
-		if (req.body.id) {
-			let q = Contact.model.findByIdAndRemove(req.body.id, function (err) {
-				if (err) throw err;
+			if (req.body.id) {
+				let q = await Contact.model.findByIdAndRemove(req.body.id)
 				res.send('Contact deleted successfully!');
-			});
-			
-		} else {
+			} else {
+				res.status(404).send();
+			}
+
+		} catch (error) {
+			console.error(error)
 			res.status(404).send();
 		}
 	});
